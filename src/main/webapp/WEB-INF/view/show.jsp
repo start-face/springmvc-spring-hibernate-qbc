@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>show page</title>
 </head>
 <body>
-
+    <h1>这是返回界面...</h1>
 </body>
 </html>

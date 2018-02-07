@@ -6,6 +6,8 @@ import com.ssh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author FaceFeel
  * @Created 2018-02-05 20:11
@@ -15,6 +17,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
+    @Override
+    public List<UserModel> showUser() {
+
+        return userDao.showUser();
+    }
 
     @Override
     public Boolean addUser(UserModel userModel) {

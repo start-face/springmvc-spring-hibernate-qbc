@@ -23,26 +23,27 @@ public class UserDaoImpl implements UserDao {
     @Resource
     private HibernateTemplate hibernateTemplate;
 
-
     /**
      * QBC方式查询
      */
-    public void test() {
+    @Override
+    public List<UserModel> showUser() {
 
         SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();
         Session currentSession = sessionFactory.getCurrentSession();
         Criteria criteria = currentSession.createCriteria(UserModel.class);
         UserModel userModel = new UserModel();
-        userModel.setAge(23).setUserName("john");
+//        userModel.setAge(23).setUserName("john");
 
         Example example = Example.create(userModel);
         criteria.add(example);
-        List list = criteria.list();
+        List<UserModel> list = criteria.list();
 
         list.forEach(one -> {
             UserModel user = (UserModel) one;
             System.err.println(user);
         });
+        return list;
     }
 
     @Override
