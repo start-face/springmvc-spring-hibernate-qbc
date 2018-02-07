@@ -11,18 +11,26 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
+    <!--开启包扫描-->
     <context:component-scan base-package="com.ssh.controller"/>
+    <!--开启注解驱动-->
     <mvc:annotation-driven/>
+    <!--默认方式的静态文件访问-->
     <!--<mvc:default-servlet-handler/>-->
+    <!--静态资源访问配置-->
     <mvc:resources mapping="/js/**" location="/WEB-INF/view"/>
     <mvc:resources mapping="/images/**" location="/WEB-INF/images"/>
     <mvc:resources mapping="/css/**" location="/WEB-INF/css"/>
 
+    <!--配置视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--配置页面的前缀-->
         <property name="prefix" value="/WEB-INF/view/"/>
+        <!--配置页面的后缀-->
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!--配置springmvc的全局异常处理-->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <!-- 指定所有没有指定的异常,都跳转到该页面 -->
         <property name="defaultErrorView" value="errorPage/500"/>

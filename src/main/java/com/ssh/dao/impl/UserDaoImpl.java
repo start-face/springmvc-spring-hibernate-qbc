@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
+ * 用户操作dao层接口实现类
  * @author FaceFeel
  * @Created 2018-02-05 20:22
  */
@@ -25,6 +26,7 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * QBC方式查询
+     * 获取用户数据列表
      */
     @Override
     public List<UserModel> showUser() {
@@ -46,6 +48,11 @@ public class UserDaoImpl implements UserDao {
         return list;
     }
 
+    /**
+     * 添加用户方法
+     * @param userModel 用户实体
+     * @return 布尔
+     */
     @Override
     public Boolean addUser(UserModel userModel) {
 

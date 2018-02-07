@@ -5,26 +5,37 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  <!--配置spring配置文件的初始化-->
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath*:spring-context.xml</param-value>
   </context-param>
 
+  <!--配置springmvc的过滤器-->
   <servlet>
     <servlet-name>SpringMVC</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!--初始化springmvc的配置文件-->
     <init-param>
       <param-name>contextConfigLocation</param-name>
       <param-value>classpath:spring-mvc.xml</param-value>
     </init-param>
+    <!--配置springmvc随容器一块启动-->
     <load-on-startup>1</load-on-startup>
   </servlet>
 
+  <!--springmvc过滤器的映射，过滤所有请求-->
   <servlet-mapping>
     <servlet-name>SpringMVC</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
+  <!--把一个Hibernate Session和一次完整的请求过程对应的线程相绑定。目的是为了实现"Open Session in View"的模式。
+  例如： 它允许在事务提交之后延迟加载显示所需要的对象。
+  OpenSessionInViewFilter 过滤器将 Hibernate Session 绑定到请求线程中，它将自动被 Spring 的事务管理器探测到。
+  所以 OpenSessionInViewFilter 适用于 Service 层使用HibernateTransactionManager 或 JtaTransactionManager
+  进行事务管理的环境，也可以用于非事务只读的数据操作中。
+  -->
   <filter>
     <filter-name>openSessionInViewerFilter</filter-name>
     <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
@@ -34,14 +45,22 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+  <!--配置spring的请求监听
+  RequestContextListener实现ServletRequestListener监听器接口，该监听器监听HTTP请求事件，web服务器
+  接收的每一次请求都会通知该监听器。
+  spring容器启动和关闭操作由web容器的启动和关闭事件触发，但如果spring容器中的Bean需要request,session,globalsession
+  作用域的支持，spring容器本身就必须获得web容器的HTTP请求事件，以HTTP请求的事件驱动Bean作用域的控制逻辑。
+  -->
   <listener>
     <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
   </listener>
 
+  <!--404拦截-->
   <error-page>
     <error-code>404</error-code>
     <location>/404.html</location>
   </error-page>
+  <!--500拦截-->
   <error-page>
     <error-code>500</error-code>
     <location>/500.html</location>

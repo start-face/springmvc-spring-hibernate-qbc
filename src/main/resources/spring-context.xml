@@ -14,9 +14,9 @@
     <context:annotation-config />
     <!-- 设定Spring 去哪些包中找Annotation -->
     <context:component-scan base-package="com.ssh">
+        <!--排除Controller层的扫描-->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
-
 
     <!-- 导入Src目录下的jdbc.properties文件 -->
     <context:property-placeholder location="classpath:jdbc.properties" />
@@ -44,13 +44,17 @@
         <property name="maxWait" value="${jdbc.maxWait}"/>
     </bean>
 
+    <!--配置hibernate的SessionFactory-->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <!--引用数据源-->
         <property name="dataSource" ref="dataSource"/>
+        <!--扫描的实体包路径-->
         <property name="packagesToScan">
             <list>
                 <value>com.ssh.model</value>
             </list>
         </property>
+        <!--配置hibernate属性-->
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
@@ -60,17 +64,19 @@
             </props>
         </property>
     </bean>
+
     <!-- 开启HibernateTemplate，并且为其注入SessionFactory
     使用HibernateTemplate不太方便的就是要获取session得通过getSessionFactory()方法获取 -->
     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
     <!-- 配置Spring的事务处理 -->
     <!-- 创建事务管理器-->
-    <bean id="txManager"
-          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
+
     <!-- 配置AOP，Spring是通过AOP来进行事务管理的 -->
     <aop:config>
         <!-- 设置pointCut表示哪些方法要加入事务处理 -->
@@ -80,6 +86,7 @@
         <!-- 通过advisor来确定具体要加入事务控制的方法 -->
         <aop:advisor advice-ref="txAdvice" pointcut-ref="allMethods" />
     </aop:config>
+
     <!-- 配置哪些方法要加入事务控制 -->
     <tx:advice id="txAdvice" transaction-manager="txManager">
         <tx:attributes>
