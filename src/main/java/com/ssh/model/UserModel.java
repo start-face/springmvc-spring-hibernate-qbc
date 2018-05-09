@@ -1,6 +1,7 @@
 package com.ssh.model;
 
 import com.google.common.base.MoreObjects;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,11 +16,11 @@ import java.util.Date;
  * @Created 2018-02-05 20:15
  */
 @Entity
-@Table(name = "userModel")
+@Table(name = "face")
 public class UserModel implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GenericGenerator(name = "id", strategy = "identity")
     private String id;
     private String userName;
     private String passWord;
