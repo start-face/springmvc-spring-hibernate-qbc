@@ -7,10 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-
-
-</head>
 <body>
 <div class="containBox-bg"></div>
 <header class="navbar-wrapper">
@@ -23,21 +19,19 @@
                href="javascript:;">&#xe667;</a>
             <nav class="nav navbar-nav nav-collapse" role="navigation" id="Hui-navbar">
                 <ul class="cl">
+                    <%--target="_blank" 表示新开窗口--%>
                     <li class="current">
-                        <%--<a href="/index" target="_blank">首页</a>--%>
                         <a href="/index">首页</a>
                     </li>
                     <li>
                         <a href="/loginPage">核心</a>
-                        <%--<a href="/loginPage" target="_blank">核心</a>--%>
                     </li>
                     <li>
-                        <a href="http://www.h-ui.net/lib/jQuery.cookie.js.shtml" target="_blank">脚本</a>
+                        <a href="#" target="_blank">脚本</a>
                     </li>
                     <li style="margin-left: 64%;"><span>&nbsp;&nbsp;</span></li>
                     <li>
-                        <a href="about.html">登录</a>
-                        <a href="jiansuo.html">注册</a>
+                        <a href="/loginPage">登录</a><a href="/register">注册</a>
                     </li>
                 </ul>
             </nav>
