@@ -26,7 +26,7 @@ public class UserModel implements Serializable {
     private String passWord;
     private String mail;
     private String phone;
-    private int sex;
+    private Integer sex;
     private String headImage;
     private String address;
     private Integer age;

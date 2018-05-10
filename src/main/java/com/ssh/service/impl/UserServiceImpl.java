@@ -23,12 +23,32 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
+
+    @Override
+    public UserModel login(UserModel userModel) {
+
+        if (userModel == null){
+            return null;
+        }
+
+        try {
+            return userDao.login(userModel);
+        }catch (Exception e){
+            logger.error("获取用户列表失败,失败信息是:",e);
+            return null;
+        }
+    }
+
     /**
      * 获取用户列表
      * @return 布尔
      */
     @Override
     public List<UserModel> showUser(UserModel userModel) {
+
+        if (userModel == null){
+            return null;
+        }
 
         try {
             return userDao.showUser(userModel);
@@ -45,6 +65,10 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Boolean addUser(UserModel userModel) {
+
+        if (userModel == null){
+            return false;
+        }
 
         try {
             return userDao.addUser(userModel);

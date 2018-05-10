@@ -21,9 +21,42 @@ public class RootController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping("index")
+    public String index(){
+        return "index";
+    }
+
+    /**
+     * 登录
+     * @return "
+     */
+    @RequestMapping("login")
+    @ResponseBody
+    public String login(UserModel userModel){
+
+        UserModel login = userService.login(userModel);
+        if (login == null){
+            return "0";
+        }
+        return "1";
+    }
+
+    /**
+     * 跳转登录界面
+     * @return "
+     */
+    @RequestMapping("loginPage")
+    public String loginPage(){
+        return "login";
+    }
+
     @RequestMapping("registerUser")
     @ResponseBody
     public String registerUser(HttpServletRequest request, UserModel userModel) {
+
+        if (userModel == null){
+            return "0";
+        }
 
         Boolean aBoolean = userService.addUser(userModel);
         if (aBoolean) {
@@ -34,7 +67,7 @@ public class RootController {
     }
 
     @RequestMapping("register")
-    public String register(HttpServletRequest request) {
+    public String register() {
         return "register";
     }
 }

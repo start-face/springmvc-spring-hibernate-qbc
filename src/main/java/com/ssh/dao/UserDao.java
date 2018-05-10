@@ -12,6 +12,13 @@ import java.util.List;
 public interface UserDao {
 
     /**
+     * 登录方法
+     * @param userModel 用户实体
+     * @return ""
+     */
+    UserModel login(UserModel userModel);
+
+    /**
      * 获取用户数据列表
      * @return 用户实体集合
      */

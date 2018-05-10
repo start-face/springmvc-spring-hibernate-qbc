@@ -24,6 +24,17 @@ public class UserController {
     private UserService userService;
 
     /**
+     * 跳转用户个人中心
+     * @param request http
+     * @return "
+     */
+    @RequestMapping("/index")
+    public String index(HttpServletRequest request){
+
+        return "index";
+    }
+
+    /**
      * 获取用户实体
      *
      * @param request http请求

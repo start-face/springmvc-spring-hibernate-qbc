@@ -2,15 +2,12 @@ package com.ssh.dao.impl;
 
 import com.ssh.dao.UserDao;
 import com.ssh.model.UserModel;
+import com.ssh.tools.HibernateFactory;
 import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Example;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -24,6 +21,23 @@ public class UserDaoImpl implements UserDao {
     @Resource
     private HibernateTemplate hibernateTemplate;
 
+
+    /**
+     * 登录方法
+     * @param userModel 用户实体
+     * @return ""
+     */
+    @Override
+    public UserModel login(UserModel userModel) {
+
+        Criteria criteria = HibernateFactory.getCriteria(hibernateTemplate, UserModel.class, userModel);
+        List<UserModel> list = criteria.list();
+        if (list.size()<1){
+            return null;
+        }
+        return list.get(0);
+    }
+
     /**
      * QBC方式查询
      * 获取用户数据列表
@@ -31,12 +45,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<UserModel> showUser(UserModel userModel) {
 
-        SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();
-        Session currentSession = sessionFactory.getCurrentSession();
-        Criteria criteria = currentSession.createCriteria(UserModel.class);
-        Example example = Example.create(userModel);
-        criteria.add(example);
-        List<UserModel> list = criteria.list();
+        List<UserModel> list = HibernateFactory.getCriteria(hibernateTemplate,UserModel.class,userModel).list();
 
         list.forEach(one -> {
             UserModel user = (UserModel) one;
