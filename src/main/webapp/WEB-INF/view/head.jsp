@@ -34,7 +34,7 @@
                     <li>
                         <a href="http://www.h-ui.net/lib/jQuery.cookie.js.shtml" target="_blank">脚本</a>
                     </li>
-                    <li style="margin-left: 60%;"><span style="margin-left: 40%;">&nbsp;</span></li>
+                    <li style="margin-left: 64%;"><span>&nbsp;&nbsp;</span></li>
                     <li>
                         <a href="about.html">登录</a>
                         <a href="jiansuo.html">注册</a>
