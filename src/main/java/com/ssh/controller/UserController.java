@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,7 +43,16 @@ public class UserController {
     @RequestMapping("/addUser")
     public String show(HttpServletRequest request) {
 
-        Boolean tom = userService.addUser(new UserModel().setAge(12).setUserName("tom"));
+        UserModel userModel = new UserModel();
+        userModel.setAge(12)
+                .setUserName("曹操")
+                .setAddress("中国北京")
+                .setBirthday(new Date())
+                .setMail("123456@qq.com")
+                .setPassWord("123456")
+                .setPhone("12345678912")
+                .setSex(1);
+        Boolean tom = userService.addUser(userModel);
         System.err.println(tom);
         return "show";
     }

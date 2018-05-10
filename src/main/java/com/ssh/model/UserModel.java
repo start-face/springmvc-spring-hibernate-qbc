@@ -1,12 +1,8 @@
 package com.ssh.model;
 
 import com.google.common.base.MoreObjects;
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,12 +12,16 @@ import java.util.Date;
  * @Created 2018-02-05 20:15
  */
 @Entity
-@Table(name = "face")
+@Table(name = "hb_user_model")
 public class UserModel implements Serializable {
 
+    /**
+     * 如果使用的是String类型,则必须给定主键一个默认值,或是在插入的时候自己指定主键值,
+     * 否则会报:Field 'id' doesn't have a default value
+     */
     @Id
-    @GenericGenerator(name = "id", strategy = "identity")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String userName;
     private String passWord;
     private String mail;
@@ -50,11 +50,11 @@ public class UserModel implements Serializable {
                 .toString();
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public UserModel setId(String id) {
+    public UserModel setId(Long id) {
         this.id = id;
         return this;
     }
