@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * 用户操作类
+ *
  * @author FaceFeel
  * @Created 2018-02-05 20:24
  */
@@ -24,19 +25,22 @@ public class UserController {
 
     /**
      * 获取用户实体
+     *
      * @param request http请求
      * @return jsp名称
      */
     @RequestMapping("/showUser")
-    public String showUser(HttpServletRequest request){
+    public String showUser(HttpServletRequest request) {
 
-        List<UserModel> userModels = userService.showUser();
-        System.err.println(userModels);
+        UserModel userModel = new UserModel();
+        List<UserModel> userModels = userService.showUser(userModel);
+        request.setAttribute("user", userModels);
         return "show";
     }
 
     /**
      * 添加用户方法
+     *
      * @param request http请求
      * @return jsp名称
      */

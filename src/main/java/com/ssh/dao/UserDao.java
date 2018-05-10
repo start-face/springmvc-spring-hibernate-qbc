@@ -15,7 +15,7 @@ public interface UserDao {
      * 获取用户数据列表
      * @return 用户实体集合
      */
-    List<UserModel> showUser();
+    List<UserModel> showUser(UserModel userModel);
 
     /**
      * 添加用户方法

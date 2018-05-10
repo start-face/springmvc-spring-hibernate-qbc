@@ -29,14 +29,11 @@ public class UserDaoImpl implements UserDao {
      * 获取用户数据列表
      */
     @Override
-    public List<UserModel> showUser() {
+    public List<UserModel> showUser(UserModel userModel) {
 
         SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();
         Session currentSession = sessionFactory.getCurrentSession();
         Criteria criteria = currentSession.createCriteria(UserModel.class);
-        UserModel userModel = new UserModel();
-//        userModel.setAge(23).setUserName("john");
-
         Example example = Example.create(userModel);
         criteria.add(example);
         List<UserModel> list = criteria.list();
@@ -56,10 +53,9 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Boolean addUser(UserModel userModel) {
 
-        //返回的是它的记录数
         try {
-            Serializable save = hibernateTemplate.save(userModel);
-            System.err.println(save);
+            //返回的是它的记录数
+            hibernateTemplate.save(userModel);
             return true;
         } catch (Exception e) {
             return false;

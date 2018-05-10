@@ -3,6 +3,8 @@ package com.ssh.service.impl;
 import com.ssh.dao.UserDao;
 import com.ssh.model.UserModel;
 import com.ssh.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ import java.util.List;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
     @Autowired
     private UserDao userDao;
 
@@ -24,9 +28,14 @@ public class UserServiceImpl implements UserService {
      * @return 布尔
      */
     @Override
-    public List<UserModel> showUser() {
+    public List<UserModel> showUser(UserModel userModel) {
 
-        return userDao.showUser();
+        try {
+            return userDao.showUser(userModel);
+        }catch (Exception e){
+            logger.error("获取用户列表失败,失败信息是:",e);
+            return null;
+        }
     }
 
     /**
@@ -40,6 +49,7 @@ public class UserServiceImpl implements UserService {
         try {
             return userDao.addUser(userModel);
         }catch (Exception e){
+            logger.error("添加用户失败,失败的信息是:",e);
             return false;
         }
     }

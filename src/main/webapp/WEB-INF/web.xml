@@ -11,20 +11,21 @@
     <param-value>classpath*:spring-context.xml</param-value>
   </context-param>
 
-  <!--配置springmvc的过滤器-->
+  <!--配置springMvc的过滤器-->
   <servlet>
     <servlet-name>SpringMVC</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <!--初始化springmvc的配置文件-->
+    <!--初始化springMvc的配置文件-->
     <init-param>
       <param-name>contextConfigLocation</param-name>
       <param-value>classpath:spring-mvc.xml</param-value>
     </init-param>
-    <!--配置springmvc随容器一块启动-->
+
+    <!--配置springMvc随容器一块启动-->
     <load-on-startup>1</load-on-startup>
   </servlet>
 
-  <!--springmvc过滤器的映射，过滤所有请求-->
+  <!--springMvc过滤器的映射，过滤所有请求-->
   <servlet-mapping>
     <servlet-name>SpringMVC</servlet-name>
     <url-pattern>/</url-pattern>
