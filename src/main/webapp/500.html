@@ -1,10 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>500</title>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <link rel="stylesheet" type="text/css" href="/common/static/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="/common/lib/Hui-iconfont/1.0.8/iconfont.min.css" />
+    <script>
+        if (self == top) {
+            document.documentElement.style.display = 'block'
+        } else {
+            top.location = self.location
+        }
+    </script>
+
+    <title>500页面</title>
+    <meta name="keywords" content="500页面,后台出现错误啦!">
+    <meta name="description" content="500页面。">
 </head>
-<body>
-    <h1>这是500页面...</h1>
+
+<body id="page-404">
+
+<header class="navbar-wrapper">
+    <div class="navbar navbar-black navbar-fixed-top">
+        <div class="container cl">
+            <a class="logo navbar-logo hidden-xs" href="/aboutHui.shtml">访问</a>
+            <a class="logo navbar-logo-m visible-xs" href="/aboutHui.shtml">欢迎</a>
+            <span class="logo navbar-slogan hidden-xs">XX网站</span>
+            <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs JS-nav-toggle"
+               href="javascript:;">&#xe667;</a>
+            <nav class="nav navbar-nav nav-collapse" role="navigation" id="Hui-navbar">
+                <ul class="cl">
+                    <li class="current">
+                        <a href="/index">首页</a>
+                    </li>
+                    <li>
+                        <a href="/loginPage">核心</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">脚本</a>
+                    </li>
+                    <li style="margin-left: 64%;"><span>&nbsp;&nbsp;</span></li>
+                    <li>
+                        <a href="/loginPage">登录</a><a href="/register">注册</a>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="navbar-userbar hidden-xs"></nav>
+        </div>
+    </div>
+</header>
+
+<section class="container">
+    <article class="page-404 minWP text-c">
+        <p class="error-title"><i class="Hui-iconfont va-m">&#xe688;</i><span class="va-m"> 404</span></p>
+        <p class="error-description">不好意思，您访问的页面不存在~</p>
+        <p class="error-info">您可以：<a href="javascript:;" onclick="history.go(-1)" class="c-primary">&lt; 返回上一页</a><span
+                class="ml-20">|</span><a href="/" class="c-primary ml-20">去首页 &gt;</a></p>
+    </article>
+</section>
+
+<footer class="footer mt-20">
+    <div class="container">
+        <nav class="footer-nav">
+            <a target="_blank" href="http://www.h-ui.net/aboutHui.shtml">关于我们</a>
+            <span class="pipe">|</span>
+            <a target="_blank" href="http://www.h-ui.net/copyright.shtml">隐私保护</a>
+            <span class="pipe">|</span>
+            <a target="_blank" href="http://www.h-ui.net/juanzeng.shtml">免责声明</a>
+        </nav>
+        <p>Copyright &copy;2013-2017 XX.net All Rights Reserved. <br>
+            <a rel="nofollow" target="_blank" href="http://www.miitbeian.gov.cn/">京ICP备xxxxxxx号</a>
+            <br>
+        </p>
+    </div>
+</footer>
 </body>
 </html>
