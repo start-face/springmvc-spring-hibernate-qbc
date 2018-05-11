@@ -12,6 +12,13 @@ import java.util.List;
 public interface UserDao {
 
     /**
+     * 查询用户个人信息
+     * @param id 用户ID
+     * @return ""
+     */
+    UserModel userInfo(Long id);
+
+    /**
      * 登录方法
      * @param userModel 用户实体
      * @return ""

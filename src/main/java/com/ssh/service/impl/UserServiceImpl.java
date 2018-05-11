@@ -24,6 +24,26 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
 
+    /**
+     * 查询用户个人信息
+     * @param id 用户ID
+     * @return ""
+     */
+    @Override
+    public UserModel userInfo(Long id) {
+
+        if (id == null){
+            return null;
+        }
+
+        try {
+            return userDao.userInfo(id);
+        }catch (Exception e){
+            logger.error("查询用户信息失败,失败的信息是:",e);
+            return null;
+        }
+    }
+
     @Override
     public UserModel login(UserModel userModel) {
 

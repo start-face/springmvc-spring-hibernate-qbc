@@ -23,6 +23,25 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping("/getNewsList")
+    public String getNewsList(HttpServletRequest request){
+
+        return "index";
+    }
+
+    @RequestMapping("/pushNewsPage")
+    public String pushNewsPage(){
+        return "pushNews";
+    }
+
+    @RequestMapping("/userInfo")
+    public String userInfo(HttpServletRequest request,Long id){
+
+        UserModel userModel = userService.userInfo(id);
+        request.setAttribute("user",userModel);
+        return "userInfo";
+    }
+
     /**
      * 跳转用户个人中心
      * @param request http

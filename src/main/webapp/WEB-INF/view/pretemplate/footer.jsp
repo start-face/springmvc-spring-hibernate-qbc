@@ -25,5 +25,15 @@
         </p>
     </div>
 </footer>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/Validform/5.3.2/Validform.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/Validform/5.3.2/passwordStrength-min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/jquery-ui/1.9.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/static/h-ui/js/H-ui.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/jquery.SuperSlide/2.1.1/jquery.SuperSlide.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/jquery.validation/1.14.0/messages_zh.min.js"></script>
 </body>
 </html>

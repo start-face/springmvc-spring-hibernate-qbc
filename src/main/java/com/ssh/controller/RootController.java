@@ -44,6 +44,13 @@ public class RootController {
         return "1";
     }
 
+    @RequestMapping("logout")
+    public String logout(HttpServletRequest request){
+
+        request.getSession().removeAttribute("currentUser");
+        return "index";
+    }
+
     /**
      * 跳转登录界面
      *

@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * 用户操作dao层接口实现类
+ *
  * @author FaceFeel
  * @Created 2018-02-05 20:22
  */
@@ -23,7 +24,26 @@ public class UserDaoImpl implements UserDao {
 
 
     /**
+     * 查询用户个人信息
+     *
+     * @param id 用户ID
+     * @return ""
+     */
+    @Override
+    public UserModel userInfo(Long id) {
+
+        Criteria criteria = HibernateFactory.getCriteria(hibernateTemplate, UserModel.class, new UserModel().setId(id));
+        List<UserModel> list = criteria.list();
+        if (list.size() < 1) {
+            return null;
+        }
+
+        return list.get(0);
+    }
+
+    /**
      * 登录方法
+     *
      * @param userModel 用户实体
      * @return ""
      */
@@ -32,7 +52,7 @@ public class UserDaoImpl implements UserDao {
 
         Criteria criteria = HibernateFactory.getCriteria(hibernateTemplate, UserModel.class, userModel);
         List<UserModel> list = criteria.list();
-        if (list.size()<1){
+        if (list.size() < 1) {
             return null;
         }
         return list.get(0);
@@ -45,7 +65,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<UserModel> showUser(UserModel userModel) {
 
-        List<UserModel> list = HibernateFactory.getCriteria(hibernateTemplate,UserModel.class,userModel).list();
+        List<UserModel> list = HibernateFactory.getCriteria(hibernateTemplate, UserModel.class, userModel).list();
 
         list.forEach(one -> {
             UserModel user = (UserModel) one;
@@ -56,6 +76,7 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * 添加用户方法
+     *
      * @param userModel 用户实体
      * @return 布尔
      */
