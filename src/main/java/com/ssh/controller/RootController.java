@@ -31,7 +31,7 @@ public class RootController {
 
         news.setStatus(1);
         List<News> newsList = newsService.getNewsList(news);
-        request.setAttribute("news", newsList);
+        request.setAttribute("newsList", newsList);
         return "index";
     }
 

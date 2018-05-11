@@ -35,7 +35,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${news}" var="one">
+            <c:forEach items="${newsList}" var="one">
                 <c:if test="${one.newsType eq '1'}">
                     <tr>
                         <td>${one.title}</td>

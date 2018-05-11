@@ -56,7 +56,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${news}" var="one">
+                                    <c:forEach items="${newsList}" var="one">
                                         <c:if test="${one.newsType eq '1'}">
                                             <tr>
                                                 <td>${one.title}</td>
@@ -75,80 +75,80 @@
                         </div>
                     </div>
                     <div class="tabCon">
-                        <%--<div class="panel panel-default mt-20">--%>
-                            <%--<div class="panel-header clearfix">--%>
-                                <%--<span class="f-l">科技</span>--%>
-                                <%--<span class="f-r">科技新闻展示</span>--%>
-                            <%--</div>--%>
-                            <%--<div class="panel-body">--%>
-                                <%--<table class="table table-border table-bordered table-bg">--%>
-                                    <%--<thead>--%>
-                                    <%--<tr>--%>
-                                        <%--<th width="30%">标题</th>--%>
-                                        <%--<th width="20%">发生地</th>--%>
-                                        <%--<th>内容</th>--%>
-                                        <%--<th>发生时间</th>--%>
-                                        <%--<th>作者</th>--%>
-                                        <%--<th>是否热门</th>--%>
-                                        <%--<th>图片</th>--%>
-                                    <%--</tr>--%>
-                                    <%--</thead>--%>
-                                    <%--<tbody>--%>
-                                    <%--<c:forEach items="${news}" var="one">--%>
-                                        <%--<c:if test="${one.newsType eq '2'}">--%>
-                                            <%--<tr>--%>
-                                                <%--<td>${one.title}</td>--%>
-                                                <%--<td>${one.newsAddress}</td>--%>
-                                                <%--<td>${one.content}</td>--%>
-                                                <%--<td>${one.pushDate}</td>--%>
-                                                <%--<td>${one.author}</td>--%>
-                                                <%--<td>${one.isPopular}</td>--%>
-                                                <%--<td>${one.images}</td>--%>
-                                            <%--</tr>--%>
-                                        <%--</c:if>--%>
-                                    <%--</c:forEach>--%>
-                                    <%--</tbody>--%>
-                                <%--</table>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
+                        <div class="panel panel-default mt-20">
+                            <div class="panel-header clearfix">
+                                <span class="f-l">科技</span>
+                                <span class="f-r">科技新闻展示</span>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-border table-bordered table-bg">
+                                    <thead>
+                                    <tr>
+                                        <th width="30%">标题</th>
+                                        <th width="20%">发生地</th>
+                                        <th>内容</th>
+                                        <th>发生时间</th>
+                                        <th>作者</th>
+                                        <th>是否热门</th>
+                                        <th>图片</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${newsList}" var="one">
+                                        <c:if test="${one.newsType eq '2'}">
+                                            <tr>
+                                                <td>${one.title}</td>
+                                                <td>${one.newsAddress}</td>
+                                                <td>${one.content}</td>
+                                                <td>${one.pushDate}</td>
+                                                <td>${one.author}</td>
+                                                <td>${one.isPopular}</td>
+                                                <td>${one.images}</td>
+                                            </tr>
+                                        </c:if>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                     <div class="tabCon">
-                        <%--<div class="panel panel-default mt-20">--%>
-                            <%--<div class="panel-header clearfix">--%>
-                                <%--<span class="f-l">军事</span>--%>
-                                <%--<span class="f-r">军事新闻展示</span>--%>
-                            <%--</div>--%>
-                            <%--<div class="panel-body">--%>
-                                <%--<table class="table table-border table-bordered table-bg">--%>
-                                    <%--<thead>--%>
-                                    <%--<tr>--%>
-                                        <%--<th width="30%">标题</th>--%>
-                                        <%--<th width="20%">发生地</th>--%>
-                                        <%--<th>内容</th>--%>
-                                        <%--<th>发生时间</th>--%>
-                                        <%--<th>作者</th>--%>
-                                        <%--<th>是否热门</th>--%>
-                                        <%--<th>图片</th>--%>
-                                    <%--</tr>--%>
-                                    <%--</thead>--%>
-                                    <%--<tbody>--%>
-                                    <%--<c:forEach items="${news}" var="one">--%>
-                                        <%--<c:if test="${one.newsType eq 'on'}">--%>
-                                            <%--<tr>--%>
-                                                <%--<td>${one.title}</td>--%>
-                                                <%--<td>${one.newsAddress}</td>--%>
-                                                <%--<td>${one.content}</td>--%>
-                                                <%--<td>${one.pushDate}</td>--%>
-                                                <%--<td>${one.author}</td>--%>
-                                                <%--<td>${one.isPopular}</td>--%>
-                                                <%--<td>${one.images}</td>--%>
-                                            <%--</tr>--%>
-                                        <%--</c:if>--%>
-                                    <%--</c:forEach>--%>
-                                    <%--</tbody>--%>
-                                <%--</table>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
+                        <div class="panel panel-default mt-20">
+                            <div class="panel-header clearfix">
+                                <span class="f-l">军事</span>
+                                <span class="f-r">军事新闻展示</span>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-border table-bordered table-bg">
+                                    <thead>
+                                    <tr>
+                                        <th width="30%">标题</th>
+                                        <th width="20%">发生地</th>
+                                        <th>内容</th>
+                                        <th>发生时间</th>
+                                        <th>作者</th>
+                                        <th>是否热门</th>
+                                        <th>图片</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${newsList}" var="one">
+                                        <c:if test="${one.newsType eq 'on'}">
+                                            <tr>
+                                                <td>${one.title}</td>
+                                                <td>${one.newsAddress}</td>
+                                                <td>${one.content}</td>
+                                                <td>${one.pushDate}</td>
+                                                <td>${one.author}</td>
+                                                <td>${one.isPopular}</td>
+                                                <td>${one.images}</td>
+                                            </tr>
+                                        </c:if>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
