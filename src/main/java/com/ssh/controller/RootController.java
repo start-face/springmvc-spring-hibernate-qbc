@@ -27,9 +27,10 @@ public class RootController {
     private NewsService newsService;
 
     @RequestMapping("index")
-    public String index(HttpServletRequest request) {
+    public String index(HttpServletRequest request,News news) {
 
-        List<News> newsList = newsService.getNewsList(new News());
+        news.setStatus(1);
+        List<News> newsList = newsService.getNewsList(news);
         request.setAttribute("news", newsList);
         return "index";
     }

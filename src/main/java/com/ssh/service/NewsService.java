@@ -11,6 +11,13 @@ import java.util.List;
 public interface NewsService {
 
     /**
+     * 删除信息
+     * @param id 信息ID
+     * @return ""
+     */
+    boolean deleteNews(Long id);
+
+    /**
      * 获取所有新闻列表
      * @param news 新闻实体
      * @return ""

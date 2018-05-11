@@ -56,7 +56,7 @@
                         <a href="/user/pushNewsPage">发布信息</a>
                     </li>
                     <li>
-                        <a href="/user/getNewsList" target="_blank">信息管理</a>
+                        <a href="/news/getNewsList" target="_blank">信息管理</a>
                     </li>
                     <c:if test="${user eq null}">
                         <li style="margin-left: 58%;"><span>&nbsp;&nbsp;</span></li>

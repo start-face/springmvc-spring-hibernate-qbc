@@ -4,6 +4,8 @@ import com.ssh.dao.NewsDao;
 import com.ssh.model.News;
 import com.ssh.tools.HibernateFactory;
 import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +23,22 @@ public class NewsDaoImpl implements NewsDao {
     @Resource
     private HibernateTemplate hibernateTemplate;
 
+    /**
+     * 删除信息
+     * @param id 信息ID
+     * @return ""
+     */
+    @Override
+    public boolean deleteNews(Long id) {
+
+        Session session = HibernateFactory.getSession(hibernateTemplate);
+        try {
+            session.update(new News().setId(id).setStatus(0));
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
 
     /**
      * 获取所有新闻列表

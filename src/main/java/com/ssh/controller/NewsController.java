@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author FaceFeel
@@ -43,5 +45,29 @@ public class NewsController {
             return "redirect:/user/index";
         }
         return "pushNews";
+    }
+
+    @RequestMapping("/getNewsList")
+    public String getNewsList(HttpServletRequest request,News news){
+
+        if (news == null){
+            return "newsManager";
+        }
+
+        news.setStatus(1);
+        List<News> newsList = newsService.getNewsList(news);
+        request.setAttribute("news",newsList);
+        return "newsManager";
+    }
+
+    @RequestMapping("/deleteNews")
+    public String deleteNews(Long id){
+
+        if (id == null){
+            return "redirect:/news/getNewsList";
+        }
+
+        boolean result = newsService.deleteNews(id);
+        return "redirect:/news/getNewsList";
     }
 }

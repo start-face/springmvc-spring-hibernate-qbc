@@ -23,6 +23,26 @@ public class NewsServiceImpl implements NewsService {
     private NewsDao newsDao;
 
     /**
+     * 删除信息
+     * @param id 信息ID
+     * @return ""
+     */
+    @Override
+    public boolean deleteNews(Long id) {
+
+        if (id == null){
+            return false;
+        }
+
+        try {
+            return newsDao.deleteNews(id);
+        }catch (Exception e){
+            logger.error("删除信息失败,失败的详情是:",e);
+            return false;
+        }
+    }
+
+    /**
      * 获取所有新闻列表
      * @param news 新闻实体
      * @return ""

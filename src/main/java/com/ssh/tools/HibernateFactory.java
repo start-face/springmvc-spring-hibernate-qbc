@@ -21,4 +21,12 @@ public class HibernateFactory {
         criteria.add(example);
         return criteria;
     }
+
+
+    public static Session getSession(HibernateTemplate hibernateTemplate) {
+
+        SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();
+        Session currentSession = sessionFactory.getCurrentSession();
+        return currentSession;
+    }
 }
