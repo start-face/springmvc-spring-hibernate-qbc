@@ -37,9 +37,15 @@
 <body ontouchstart>
 
 <div class="containBox">
-    <jsp:include page="head.jsp"/>
+    <jsp:include page="pretemplate/head.jsp"/>
 	<div class="wap-container">
-        <jsp:include page="guide.jsp"/>
+		<nav class="breadcrumb">
+			<div class="container">
+				<i class="Hui-iconfont">&#xe67f;</i>
+				<a href="/" class="c-primary">首页</a>
+				<span class="c-gray en">&gt;</span>
+			</div>
+		</nav>
 
 		<div class="container ui-sortable">
 			<h1>Hi,H-ui!</h1>
@@ -83,7 +89,7 @@
 				</div>
 			</div>
 		</div>
-		<jsp:include page="footer.jsp"/>
+		<jsp:include page="pretemplate/footer.jsp"/>
 	</div>
 </div>
 

@@ -31,6 +31,8 @@ public class UserController {
     @RequestMapping("/index")
     public String index(HttpServletRequest request){
 
+        UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
+        request.setAttribute("user",currentUser);
         return "index";
     }
 

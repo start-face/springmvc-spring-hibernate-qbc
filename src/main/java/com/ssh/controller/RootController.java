@@ -22,31 +22,35 @@ public class RootController {
     private UserService userService;
 
     @RequestMapping("index")
-    public String index(){
+    public String index() {
         return "index";
     }
 
     /**
      * 登录
+     *
      * @return "
      */
     @RequestMapping("login")
     @ResponseBody
-    public String login(UserModel userModel){
+    public String login(HttpServletRequest request, UserModel userModel) {
 
         UserModel login = userService.login(userModel);
-        if (login == null){
+        if (login == null) {
             return "0";
         }
+
+        request.getSession().setAttribute("currentUser", login);
         return "1";
     }
 
     /**
      * 跳转登录界面
+     *
      * @return "
      */
     @RequestMapping("loginPage")
-    public String loginPage(){
+    public String loginPage() {
         return "login";
     }
 
@@ -54,7 +58,7 @@ public class RootController {
     @ResponseBody
     public String registerUser(HttpServletRequest request, UserModel userModel) {
 
-        if (userModel == null){
+        if (userModel == null) {
             return "0";
         }
 

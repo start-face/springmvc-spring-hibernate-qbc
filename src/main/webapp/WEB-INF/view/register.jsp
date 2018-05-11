@@ -38,7 +38,7 @@
 
 <body>
 <div class="containBox">
-        <jsp:include page="head.jsp"/>
+        <jsp:include page="pretemplate/head.jsp"/>
         <div class="container ui-sortable">
             <h3>请填写注册信息</h3>
             <div class="panel panel-default">

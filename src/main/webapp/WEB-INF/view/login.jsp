@@ -38,8 +38,8 @@
 
 <body>
 <div class="containBox">
-    <jsp:include page="head.jsp"/>
-    <jsp:include page="guide.jsp"/>
+    <jsp:include page="pretemplate/head.jsp"/>
+    <jsp:include page="pretemplate/guide.jsp"/>
 
     <div class="container ui-sortable">
         <h3>请输入帐号密码</h3>
