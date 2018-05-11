@@ -1,6 +1,8 @@
 package com.ssh.controller;
 
+import com.ssh.model.News;
 import com.ssh.model.UserModel;
+import com.ssh.service.NewsService;
 import com.ssh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author FaceFeel
@@ -20,9 +23,14 @@ public class RootController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private NewsService newsService;
 
     @RequestMapping("index")
-    public String index() {
+    public String index(HttpServletRequest request) {
+
+        List<News> newsList = newsService.getNewsList(new News());
+        request.setAttribute("news", newsList);
         return "index";
     }
 
@@ -45,7 +53,7 @@ public class RootController {
     }
 
     @RequestMapping("logout")
-    public String logout(HttpServletRequest request){
+    public String logout(HttpServletRequest request) {
 
         request.getSession().removeAttribute("currentUser");
         return "index";

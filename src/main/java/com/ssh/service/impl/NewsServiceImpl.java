@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author FaceFeel
  * @Created 2018-05-11 14:37
@@ -19,6 +21,26 @@ public class NewsServiceImpl implements NewsService {
 
     @Autowired
     private NewsDao newsDao;
+
+    /**
+     * 获取所有新闻列表
+     * @param news 新闻实体
+     * @return ""
+     */
+    @Override
+    public List<News> getNewsList(News news) {
+
+        if (news == null){
+            return null;
+        }
+
+        try {
+            return newsDao.getNewsList(news);
+        }catch (Exception e){
+            logger.error("获取新闻信息出现问题,错误信息是:",e);
+            return null;
+        }
+    }
 
     /**
      * 持久化信息

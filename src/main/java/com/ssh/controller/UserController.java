@@ -1,6 +1,8 @@
 package com.ssh.controller;
 
+import com.ssh.model.News;
 import com.ssh.model.UserModel;
+import com.ssh.service.NewsService;
 import com.ssh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private NewsService newsService;
 
     @RequestMapping("/getNewsList")
     public String getNewsList(HttpServletRequest request){
@@ -51,6 +55,8 @@ public class UserController {
     public String index(HttpServletRequest request){
 
         UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
+        List<News> newsList = newsService.getNewsList(new News());
+        request.setAttribute("news", newsList);
         request.setAttribute("user",currentUser);
         return "index";
     }

@@ -2,11 +2,14 @@ package com.ssh.dao.impl;
 
 import com.ssh.dao.NewsDao;
 import com.ssh.model.News;
+import com.ssh.tools.HibernateFactory;
+import org.hibernate.Criteria;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author FaceFeel
@@ -18,8 +21,24 @@ public class NewsDaoImpl implements NewsDao {
     @Resource
     private HibernateTemplate hibernateTemplate;
 
+
+    /**
+     * 获取所有新闻列表
+     *
+     * @param news 新闻实体
+     * @return ""
+     */
+    @Override
+    public List<News> getNewsList(News news) {
+
+        Criteria criteria = HibernateFactory.getCriteria(hibernateTemplate, News.class, news);
+        List<News> list = criteria.list();
+        return list;
+    }
+
     /**
      * 持久化信息
+     *
      * @param news 信息实体
      * @return ""
      */
@@ -27,7 +46,7 @@ public class NewsDaoImpl implements NewsDao {
     public boolean addNews(News news) {
 
         String save = hibernateTemplate.save(news).toString();
-        if (Integer.parseInt(save) > 0){
+        if (Integer.parseInt(save) > 0) {
             return true;
         }
         return false;
