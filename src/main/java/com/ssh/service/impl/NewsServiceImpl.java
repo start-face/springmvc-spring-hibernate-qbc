@@ -3,6 +3,7 @@ package com.ssh.service.impl;
 import com.ssh.dao.NewsDao;
 import com.ssh.model.News;
 import com.ssh.service.NewsService;
+import com.ssh.tools.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,6 @@ import java.util.List;
 public class NewsServiceImpl implements NewsService {
 
     private static final Logger logger = LoggerFactory.getLogger(NewsServiceImpl.class);
-
     @Autowired
     private NewsDao newsDao;
 
@@ -58,6 +58,26 @@ public class NewsServiceImpl implements NewsService {
             return newsDao.getNewsList(news);
         }catch (Exception e){
             logger.error("获取新闻信息出现问题,错误信息是:",e);
+            return null;
+        }
+    }
+
+    /**
+     * 获取所有新闻列表
+     * @param news 新闻实体
+     * @return ""
+     */
+    @Override
+    public List<News> getNewsList(News news, PageInfo pageInfo) {
+
+        if (news == null || pageInfo == null){
+            return null;
+        }
+
+        try {
+            return newsDao.getNewsList(news,pageInfo);
+        }catch (Exception e){
+            logger.error("分页查询错误,错误信息是:",e);
             return null;
         }
     }

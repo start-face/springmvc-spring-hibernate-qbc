@@ -22,6 +22,13 @@
     <!--<mvc:resources mapping="/images/**" location="/WEB-INF/images"/>-->
     <!--<mvc:resources mapping="/css/**" location="/WEB-INF/css"/>-->
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/user/**"/>
+            <bean class="com.ssh.interceptor.UserInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!--配置视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!--配置页面的前缀-->

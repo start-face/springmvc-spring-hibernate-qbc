@@ -3,9 +3,12 @@ package com.ssh.controller;
 import com.ssh.model.News;
 import com.ssh.model.UserModel;
 import com.ssh.service.NewsService;
+import com.ssh.tools.PageInfo;
+import com.ssh.tools.ToolJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -23,14 +26,14 @@ public class NewsController {
     private NewsService newsService;
 
     @RequestMapping("/addNews")
-    public String addNews(HttpServletRequest request, News news){
+    public String addNews(HttpServletRequest request, News news) {
 
-        if (news == null){
+        if (news == null) {
             return "pushNews";
         }
 
-        UserModel currentUser = (UserModel)request.getSession().getAttribute("currentUser");
-        if (currentUser == null){
+        UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
+        if (currentUser == null) {
             return "redirect:/loginPage";
         }
 
@@ -40,42 +43,52 @@ public class NewsController {
                 .setPushDate(new Date())
                 .setStatus(1);
         boolean result = newsService.addNews(news);
-        if (result){
+        if (result) {
             return "redirect:/user/index";
         }
 
-        request.setAttribute("user",currentUser);
+        request.setAttribute("user", currentUser);
         return "pushNews";
     }
 
     @RequestMapping("/getNewsList")
-    public String getNewsList(HttpServletRequest request,News news){
+    public String getNewsList(HttpServletRequest request, News news) {
 
-        if (news == null){
+        if (news == null) {
             return "newsManager";
         }
 
         UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
-        if (currentUser == null){
+        if (currentUser == null) {
             return "login";
         }
 
         news.setStatus(1).setAuthorID(currentUser.getId());
         List<News> newsList = newsService.getNewsList(news);
-        request.setAttribute("news",newsList);
-        request.setAttribute("user",currentUser);
+        request.setAttribute("news", newsList);
+        request.setAttribute("user", currentUser);
         return "newsManager";
     }
 
-    @RequestMapping("/deleteNews")
-    public String deleteNews(HttpServletRequest request,Long id){
+    @RequestMapping("/getNews")
+    @ResponseBody
+    public String getNewsList(HttpServletRequest request, News news, PageInfo pageInfo) {
 
-        if (id == null){
+        news.setStatus(1).setAuthorID(1L);
+        List<News> newsList = newsService.getNewsList(news, pageInfo);
+        request.setAttribute("news", newsList);
+        return ToolJson.anyToJson(newsList);
+    }
+
+    @RequestMapping("/deleteNews")
+    public String deleteNews(HttpServletRequest request, Long id) {
+
+        if (id == null) {
             return "login";
         }
 
         UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
-        if (currentUser == null){
+        if (currentUser == null) {
             return "redirect:/news/getNewsList";
         }
 

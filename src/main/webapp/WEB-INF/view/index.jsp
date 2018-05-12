@@ -1,4 +1,5 @@
 ﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
@@ -62,7 +63,7 @@
                                                 <td>${one.title}</td>
                                                 <td>${one.newsAddress}</td>
                                                 <td>${one.content}</td>
-                                                <td>${one.pushDate}</td>
+                                                <td><fmt:formatDate value="${one.pushDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                                 <td>${one.author}</td>
                                                 <td>${one.isPopular}</td>
                                                 <td>${one.images}</td>
@@ -100,7 +101,7 @@
                                                 <td>${one.title}</td>
                                                 <td>${one.newsAddress}</td>
                                                 <td>${one.content}</td>
-                                                <td>${one.pushDate}</td>
+                                                <td><fmt:formatDate value="${one.pushDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                                 <td>${one.author}</td>
                                                 <td>${one.isPopular}</td>
                                                 <td>${one.images}</td>
@@ -138,7 +139,7 @@
                                                 <td>${one.title}</td>
                                                 <td>${one.newsAddress}</td>
                                                 <td>${one.content}</td>
-                                                <td>${one.pushDate}</td>
+                                                <td><fmt:formatDate value="${one.pushDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                                 <td>${one.author}</td>
                                                 <td>${one.isPopular}</td>
                                                 <td>${one.images}</td>

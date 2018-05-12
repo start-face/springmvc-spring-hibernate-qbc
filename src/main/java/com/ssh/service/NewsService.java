@@ -1,6 +1,7 @@
 package com.ssh.service;
 
 import com.ssh.model.News;
+import com.ssh.tools.PageInfo;
 
 import java.util.List;
 
@@ -23,6 +24,13 @@ public interface NewsService {
      * @return ""
      */
     List<News> getNewsList(News news);
+
+    /**
+     * 获取所有新闻列表
+     * @param news 新闻实体
+     * @return ""
+     */
+    List<News> getNewsList(News news, PageInfo pageInfo);
 
     /**
      * 持久化信息

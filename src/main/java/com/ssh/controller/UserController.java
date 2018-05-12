@@ -28,37 +28,40 @@ public class UserController {
     private NewsService newsService;
 
     @RequestMapping("/getNewsList")
-    public String getNewsList(HttpServletRequest request){
+    public String getNewsList(HttpServletRequest request, News news) {
 
+        List<News> newsList = newsService.getNewsList(news);
+        request.setAttribute("newsList", newsList);
         return "index";
     }
 
     @RequestMapping("/pushNewsPage")
-    public String pushNewsPage(){
+    public String pushNewsPage() {
         return "pushNews";
     }
 
     @RequestMapping("/userInfo")
-    public String userInfo(HttpServletRequest request,Long id){
+    public String userInfo(HttpServletRequest request, Long id) {
 
         UserModel userModel = userService.userInfo(id);
-        request.setAttribute("user",userModel);
+        request.setAttribute("user", userModel);
         return "userInfo";
     }
 
     /**
      * 跳转用户个人中心
+     *
      * @param request http
      * @return "
      */
     @RequestMapping("/index")
-    public String index(HttpServletRequest request,News news){
+    public String index(HttpServletRequest request, News news) {
 
         UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
         news.setStatus(1);
         List<News> newsList = newsService.getNewsList(news);
         request.setAttribute("newsList", newsList);
-        request.setAttribute("user",currentUser);
+        request.setAttribute("user", currentUser);
         return "index";
     }
 
@@ -77,18 +80,11 @@ public class UserController {
         return "show";
     }
 
-    /**
-     * 添加用户方法
-     *
-     * @param request http请求
-     * @return jsp名称
-     */
-    @RequestMapping("/addUser")
-    public String show(HttpServletRequest request) {
+    private void addUser() {
 
         UserModel userModel = new UserModel();
         userModel.setAge(12)
-                .setUserName("曹操")
+                .setUserName("admin")
                 .setAddress("中国北京")
                 .setBirthday(new Date())
                 .setMail("123456@qq.com")
@@ -97,6 +93,6 @@ public class UserController {
                 .setSex(1);
         Boolean tom = userService.addUser(userModel);
         System.err.println(tom);
-        return "show";
+//        return "show";
     }
 }

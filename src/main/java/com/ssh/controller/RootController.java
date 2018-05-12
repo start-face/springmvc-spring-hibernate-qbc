@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,10 +30,32 @@ public class RootController {
     @RequestMapping("index")
     public String index(HttpServletRequest request,News news) {
 
+        List<UserModel> userModels = userService.showUser(new UserModel());
+        if (userModels == null || userModels.size() < 1){
+            addUser();
+        }
+
         news.setStatus(1);
         List<News> newsList = newsService.getNewsList(news);
+
+        UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
         request.setAttribute("newsList", newsList);
+        request.setAttribute("user", currentUser);
         return "index";
+    }
+
+    private void addUser() {
+
+        UserModel userModel = new UserModel();
+        userModel.setAge(12)
+                .setUserName("admin")
+                .setAddress("中国北京")
+                .setBirthday(new Date())
+                .setMail("123456@qq.com")
+                .setPassWord("123456")
+                .setPhone("12345678912")
+                .setSex(1);
+        userService.addUser(userModel);
     }
 
     /**
