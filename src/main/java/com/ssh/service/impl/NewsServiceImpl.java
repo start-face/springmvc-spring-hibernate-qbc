@@ -3,6 +3,7 @@ package com.ssh.service.impl;
 import com.ssh.dao.NewsDao;
 import com.ssh.model.News;
 import com.ssh.service.NewsService;
+import com.ssh.tools.Page;
 import com.ssh.tools.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,7 +69,7 @@ public class NewsServiceImpl implements NewsService {
      * @return ""
      */
     @Override
-    public List<News> getNewsList(News news, PageInfo pageInfo) {
+    public Page<News> getNewsList(News news, PageInfo pageInfo) {
 
         if (news == null || pageInfo == null){
             return null;

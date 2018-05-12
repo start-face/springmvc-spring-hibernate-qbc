@@ -3,10 +3,14 @@ package com.ssh.dao.impl;
 import com.ssh.dao.NewsDao;
 import com.ssh.model.News;
 import com.ssh.tools.HibernateFactory;
+import com.ssh.tools.Page;
 import com.ssh.tools.PageInfo;
+import com.ssh.tools.PageUtil;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.orm.hibernate4.HibernateTemplate;
@@ -66,19 +70,22 @@ public class NewsDaoImpl implements NewsDao {
      */
     @Override
     @SuppressWarnings("unchecked")
-    public List<News> getNewsList(News news, PageInfo pageInfo) {
+    public Page<News> getNewsList(News news, PageInfo pageInfo) {
 
         Session session = HibernateFactory.getSession(hibernateTemplate);
         try {
-            Criteria criteria = session.createCriteria(News.class);
-            //从第一个数据开始
-            criteria.setFirstResult(pageInfo.getCurrentPage());
-            //取10条记录
-            criteria.setMaxResults(pageInfo.getPageSize());
-            return (List<News>) criteria.list();
-        } catch (HibernateException ex) {
-            logger.error("分页查询出错,错误信息是:",ex);
 
+            Criteria criteria = session.createCriteria(News.class);
+            criteria.setProjection(Projections.rowCount());
+            int totalCount = Integer.valueOf(criteria.uniqueResult().toString());
+            criteria.setProjection(null);
+            criteria.setFirstResult(PageUtil.currentPage(pageInfo.getPageSize(), pageInfo.getCurrentPage()));
+            criteria.setMaxResults(pageInfo.getPageSize());
+            Page<News> page = PageUtil.getPage(pageInfo,totalCount);
+            page.setList((List<News>) criteria.list());
+            return page;
+        } catch (HibernateException ex) {
+            logger.error("分页查询出错,错误信息是:", ex);
             return null;
         }
     }

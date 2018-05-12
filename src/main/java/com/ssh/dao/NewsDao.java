@@ -1,6 +1,7 @@
 package com.ssh.dao;
 
 import com.ssh.model.News;
+import com.ssh.tools.Page;
 import com.ssh.tools.PageInfo;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public interface NewsDao {
      * @param news 新闻实体
      * @return ""
      */
-    List<News> getNewsList(News news, PageInfo pageInfo);
+    Page<News> getNewsList(News news, PageInfo pageInfo);
 
     /**
      * 持久化信息

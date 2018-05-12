@@ -1,9 +1,11 @@
 package com.ssh.tools;
 
+import com.ssh.model.News;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Projections;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
 /**
@@ -22,6 +24,16 @@ public class HibernateFactory {
         return criteria;
     }
 
+    public static <T> Criteria getPageCriteria(Class<T> clazz,PageInfo pageInfo,Session session){
+
+        Criteria criteria = session.createCriteria(clazz);
+        criteria.setProjection(Projections.rowCount());
+        criteria.setProjection(null);
+        criteria.setFirstResult(PageUtil.currentPage(pageInfo.getPageSize(), pageInfo.getCurrentPage()));
+        criteria.setMaxResults(pageInfo.getPageSize());
+
+        return criteria;
+    }
 
     public static Session getSession(HibernateTemplate hibernateTemplate) {
 

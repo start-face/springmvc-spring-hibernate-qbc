@@ -3,6 +3,7 @@ package com.ssh.controller;
 import com.ssh.model.News;
 import com.ssh.model.UserModel;
 import com.ssh.service.NewsService;
+import com.ssh.tools.Page;
 import com.ssh.tools.PageInfo;
 import com.ssh.tools.ToolJson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +76,7 @@ public class NewsController {
     public String getNewsList(HttpServletRequest request, News news, PageInfo pageInfo) {
 
         news.setStatus(1).setAuthorID(1L);
-        List<News> newsList = newsService.getNewsList(news, pageInfo);
+        Page<News> newsList = newsService.getNewsList(news, pageInfo);
         request.setAttribute("news", newsList);
         return ToolJson.anyToJson(newsList);
     }
