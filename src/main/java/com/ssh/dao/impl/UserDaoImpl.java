@@ -22,7 +22,6 @@ public class UserDaoImpl implements UserDao {
     @Resource
     private HibernateTemplate hibernateTemplate;
 
-
     /**
      * 查询用户个人信息
      *
@@ -63,15 +62,9 @@ public class UserDaoImpl implements UserDao {
      * 获取用户数据列表
      */
     @Override
+    @SuppressWarnings("unchecked")
     public List<UserModel> showUser(UserModel userModel) {
-
-        List<UserModel> list = HibernateFactory.getCriteria(hibernateTemplate, UserModel.class, userModel).list();
-
-        list.forEach(one -> {
-            UserModel user = (UserModel) one;
-            System.err.println(user);
-        });
-        return list;
+        return (List<UserModel>)HibernateFactory.getCriteria(hibernateTemplate, UserModel.class, userModel).list();
     }
 
     /**

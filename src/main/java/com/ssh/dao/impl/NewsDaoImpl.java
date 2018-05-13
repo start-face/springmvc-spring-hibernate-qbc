@@ -72,18 +72,8 @@ public class NewsDaoImpl implements NewsDao {
     @SuppressWarnings("unchecked")
     public Page<News> getNewsList(News news, PageInfo pageInfo) {
 
-        Session session = HibernateFactory.getSession(hibernateTemplate);
         try {
-
-            Criteria criteria = session.createCriteria(News.class);
-            criteria.setProjection(Projections.rowCount());
-            int totalCount = Integer.valueOf(criteria.uniqueResult().toString());
-            criteria.setProjection(null);
-            criteria.setFirstResult(PageUtil.currentPage(pageInfo.getPageSize(), pageInfo.getCurrentPage()));
-            criteria.setMaxResults(pageInfo.getPageSize());
-            Page<News> page = PageUtil.getPage(pageInfo,totalCount);
-            page.setList((List<News>) criteria.list());
-            return page;
+            return PageUtil.getPage(news, hibernateTemplate, pageInfo);
         } catch (HibernateException ex) {
             logger.error("分页查询出错,错误信息是:", ex);
             return null;

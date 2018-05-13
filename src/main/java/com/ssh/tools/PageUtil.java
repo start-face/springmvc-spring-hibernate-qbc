@@ -1,25 +1,54 @@
 package com.ssh.tools;
 
-import com.ssh.model.News;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Projections;
+import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import java.util.List;
 
 /**
+ * 分页实体工具
  * @author FaceFeel
  * @Created 2018-05-12 22:36
  */
-
 public class PageUtil {
 
+    /**
+     * 获取分页实体
+     * @param clazz 查询条件
+     * @param hibernateTemplate hibernate模版
+     * @param pageInfo 分页实体
+     * @param <T> 泛型
+     * @return Page
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> Page<T> getPage(T clazz, HibernateTemplate hibernateTemplate, PageInfo pageInfo) {
 
-    public static <T> Page<T> getPage(PageInfo pageInfo, int totalCount) {
+        Session session = HibernateFactory.getSession(hibernateTemplate);
+        Criteria criteria = session.createCriteria(clazz.getClass());
+        criteria.setProjection(Projections.rowCount());
+        int totalCount = Integer.valueOf(criteria.uniqueResult().toString());
+        Criteria pageCriteria = HibernateFactory.getPageCriteria(criteria, pageInfo, session);
 
-        Page<T> newsPage = new Page<>();
-        newsPage.setTotalCount(totalCount)
-                .setCurrentPage(currentPage(pageInfo.getPageSize(), pageInfo.getCurrentPage()))
-                .setPageSize(pageInfo.getPageSize())
-                .setTotalPage(countTotalPage(pageInfo.getPageSize(), totalCount));
-        return newsPage;
+        Example example = Example.create(clazz);
+        criteria.add(example);
+        return PageUtil.getPage(pageInfo, totalCount,(List<T>) pageCriteria.list());
+    }
+
+    /**
+     * 拼装Page实体
+     * @param pageInfo 分页实体
+     * @param totalCount 总页数
+     * @param list 获取到的数据
+     * @param <T> 泛型
+     * @return Page"
+     */
+    public static <T> Page<T> getPage(PageInfo pageInfo, int totalCount,List<T> list) {
+        int currentPage = currentPage(pageInfo.getPageSize(), pageInfo.getCurrentPage());
+        int countTotalPage = countTotalPage(pageInfo.getPageSize(), totalCount);
+        return new Page<>(pageInfo.getPageSize(),currentPage,totalCount,countTotalPage,list);
     }
 
     /**

@@ -17,7 +17,15 @@ public class Page <T> implements java.io.Serializable{
     private int totalPage;
     private List<T> list;
 
-    public Page() {
+    public Page(int pageSize, int currentPage, long totalCount, int totalPage, List<T> list) {
+        this.pageSize = pageSize;
+        this.currentPage = currentPage;
+        if (currentPage == 0){
+            this.currentPage = 1;
+        }
+        this.totalCount = totalCount;
+        this.totalPage = totalPage;
+        this.list = list;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.ssh.tools;
 
-import com.ssh.model.News;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,6 +20,15 @@ public class HibernateFactory {
         Criteria criteria = currentSession.createCriteria(clazz);
         Example example = Example.create(t);
         criteria.add(example);
+        return criteria;
+    }
+
+    public static Criteria getPageCriteria(Criteria criteria,PageInfo pageInfo,Session session){
+
+        criteria.setProjection(null);
+        criteria.setFirstResult(PageUtil.currentPage(pageInfo.getPageSize(), pageInfo.getCurrentPage()));
+        criteria.setMaxResults(pageInfo.getPageSize());
+
         return criteria;
     }
 
