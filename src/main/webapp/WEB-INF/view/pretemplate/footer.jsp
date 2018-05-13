@@ -26,6 +26,7 @@
     </div>
 </footer>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/Validform/5.3.2/Validform.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/Validform/5.3.2/passwordStrength-min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/jquery/1.9.1/jquery.min.js"></script>

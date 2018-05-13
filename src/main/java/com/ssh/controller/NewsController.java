@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class NewsController {
     }
 
     @RequestMapping("/getNewsList")
-    public String getNewsList(HttpServletRequest request, News news) {
+    public String getNewsList(HttpServletRequest request, News news, PageInfo pageInfo) {
 
         if (news == null) {
             return "newsManager";
@@ -63,9 +64,8 @@ public class NewsController {
         if (currentUser == null) {
             return "login";
         }
-
         news.setStatus(1).setAuthorID(currentUser.getId());
-        List<News> newsList = newsService.getNewsList(news);
+        Page<News> newsList = newsService.getNewsList(news, pageInfo);
         request.setAttribute("news", newsList);
         request.setAttribute("user", currentUser);
         return "newsManager";
@@ -73,9 +73,20 @@ public class NewsController {
 
     @RequestMapping("/getNews")
     @ResponseBody
-    public String getNewsList(HttpServletRequest request, News news, PageInfo pageInfo) {
+    public String getNews(HttpServletRequest request, News news, PageInfo pageInfo) {
 
-        news.setStatus(1).setAuthorID(1L);
+        if (news == null || pageInfo == null) {
+            Page<News> page = new Page<>(0, 0, 0L, 0, new ArrayList<>());
+            return ToolJson.anyToJson(page);
+        }
+
+        UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
+        if (currentUser == null){
+            Page<News> page = new Page<>(0, 0, 0L, 0, new ArrayList<>());
+            return ToolJson.anyToJson(page);
+        }
+
+        news.setStatus(1).setAuthorID(currentUser.getId());
         Page<News> newsList = newsService.getNewsList(news, pageInfo);
         request.setAttribute("news", newsList);
         return ToolJson.anyToJson(newsList);

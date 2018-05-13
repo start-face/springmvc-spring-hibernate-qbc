@@ -11,7 +11,7 @@ public class PageInfo implements java.io.Serializable {
 
     private int currentPage;
     private int endPage;
-    private int pageSize;
+    private int pageSize = 2;
     private long totalPage;
 
     public PageInfo() {
@@ -51,6 +51,9 @@ public class PageInfo implements java.io.Serializable {
 
     public PageInfo setPageSize(int pageSize) {
         this.pageSize = pageSize;
+        if (pageSize == 0){
+            this.pageSize = 2;
+        }
         return this;
     }
 

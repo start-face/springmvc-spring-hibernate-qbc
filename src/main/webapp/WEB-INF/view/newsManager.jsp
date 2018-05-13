@@ -35,8 +35,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${newsList}" var="one">
-                <c:if test="${one.newsType eq '1'}">
+            <c:forEach items="${newsList.list}" var="one">
                     <tr>
                         <td>${one.title}</td>
                         <td>${one.newsAddress}</td>
@@ -47,13 +46,35 @@
                         <td>${one.images}</td>
                         <td><<a href="/news/addNews?id=${one.id}">删除</a></td>
                     </tr>
-                </c:if>
             </c:forEach>
             </tbody>
         </table>
     </div>
+
+    <div id="page"></div>
+    <div id="view1"></div>
 </div>
 
 <jsp:include page="pretemplate/footer.jsp"/>
+
+<script>
+    $.getJSON('/news/getNews', {curr: 1}, function(res){ //从第6页开始请求。返回的json格式可以任意定义
+        laypage({
+            cont: 'page', //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：&lt;div id="page1">&lt;/div>
+            pages: res.totalPage, //通过后台拿到的总页数
+            curr: 1, //初始化当前页
+            jump: function(e){ //触发分页后的回调
+
+                $.getJSON('/news/getNews', {curr: e.curr}, function(res){
+                    e.pages = e.last = res.pages; //重新获取总页数，一般不用写
+                    //渲染
+                    var view = document.getElementById('view1'); //你也可以直接使用jquery
+                    var demoContent = (new Date().getTime()/Math.random()/1000)|0; //此处仅仅是为了演示
+                    view.innerHTML = res.content + demoContent;
+                });
+            }
+        });
+    });
+</script>
 </body>
 </html>
