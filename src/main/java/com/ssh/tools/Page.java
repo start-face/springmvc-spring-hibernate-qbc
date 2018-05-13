@@ -20,7 +20,7 @@ public class Page <T> implements java.io.Serializable{
     public Page(int pageSize, int currentPage, long totalCount, int totalPage, List<T> list) {
         this.pageSize = pageSize;
         this.currentPage = currentPage;
-        if (currentPage == 0){
+        if (currentPage < 1){
             this.currentPage = 1;
         }
         this.totalCount = totalCount;
