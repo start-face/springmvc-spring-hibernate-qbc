@@ -66,7 +66,8 @@
                             <a href="/user/pushNewsPage">发布信息</a>
                         </li>
                     <li>
-                        <a href="/news/getNewsList" target="_blank">信息管理</a>
+                        <%--<a href="/news/getNewsList" target="_blank">信息管理</a>--%>
+                        <a href="/news/getNewsList">信息管理</a>
                     </li>
                     </c:if>
                     <c:if test="${user eq null}">

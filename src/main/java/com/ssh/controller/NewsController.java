@@ -64,9 +64,9 @@ public class NewsController {
         if (currentUser == null) {
             return "login";
         }
-        news.setStatus(1).setAuthorID(currentUser.getId());
-        Page<News> newsList = newsService.getNewsList(news, pageInfo);
-        request.setAttribute("news", newsList);
+//        news.setStatus(1).setAuthorID(currentUser.getId());
+//        Page<News> newsList = newsService.getNewsList(news, pageInfo);
+//        request.setAttribute("news", newsList);
         request.setAttribute("user", currentUser);
         return "newsManager";
     }
@@ -88,7 +88,7 @@ public class NewsController {
 
         news.setStatus(1).setAuthorID(currentUser.getId());
         Page<News> newsList = newsService.getNewsList(news, pageInfo);
-        request.setAttribute("news", newsList);
+//        request.setAttribute("news", newsList);
         return ToolJson.anyToJson(newsList);
     }
 
