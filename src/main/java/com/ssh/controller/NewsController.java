@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author FaceFeel
@@ -64,9 +63,6 @@ public class NewsController {
         if (currentUser == null) {
             return "login";
         }
-//        news.setStatus(1).setAuthorID(currentUser.getId());
-//        Page<News> newsList = newsService.getNewsList(news, pageInfo);
-//        request.setAttribute("news", newsList);
         request.setAttribute("user", currentUser);
         return "newsManager";
     }
@@ -88,7 +84,6 @@ public class NewsController {
 
         news.setStatus(1).setAuthorID(currentUser.getId());
         Page<News> newsList = newsService.getNewsList(news, pageInfo);
-//        request.setAttribute("news", newsList);
         return ToolJson.anyToJson(newsList);
     }
 
@@ -105,6 +100,7 @@ public class NewsController {
         }
 
         boolean result = newsService.deleteNews(id);
+        System.err.println(result);
         return "redirect:/news/getNewsList";
     }
 }
