@@ -41,7 +41,7 @@ var core = (function ($) {
             content += "<td>" + o.title + "</td>";
             content += "<td>" + o.newsAddress + "</td>";
             content += "<td>" + o.content + "</td>";
-            content += "<td>" + o.pushDate + "</td>";
+            content += "<td>" + new Date(o.pushDate).Format('yyyy-MM-dd hh:mm:ss') + "</td>";
             content += "<td>" + o.author + "</td>";
             content += "<td>" + o.isPopular + "</td>";
             content += "<td><a href='/news/addNews?id='" + o.id + ">" + '删除' + "</a></td>";

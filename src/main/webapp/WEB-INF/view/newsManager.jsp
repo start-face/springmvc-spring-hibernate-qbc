@@ -52,6 +52,7 @@
 
 <jsp:include page="pretemplate/footer.jsp"/>
 <script src="${pageContext.request.contextPath}/js/core.js"></script>
+<script src="${pageContext.request.contextPath}/js/toolDate.js"></script>
 <script>
 
     $(function () {
