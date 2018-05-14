@@ -30,18 +30,32 @@ public class UserController {
     @RequestMapping("/getNewsList")
     public String getNewsList(HttpServletRequest request, News news) {
 
+        UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
         List<News> newsList = newsService.getNewsList(news);
+        request.setAttribute("user",currentUser);
         request.setAttribute("newsList", newsList);
         return "index";
     }
 
     @RequestMapping("/pushNewsPage")
-    public String pushNewsPage() {
+    public String pushNewsPage(HttpServletRequest request) {
+
+        UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
+        if (currentUser == null) {
+            return "redirect:/loginPage";
+        }
+
+        request.setAttribute("user",currentUser);
         return "pushNews";
     }
 
     @RequestMapping("/userInfo")
     public String userInfo(HttpServletRequest request, Long id) {
+
+        UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
+        if (currentUser == null) {
+            return "redirect:/loginPage";
+        }
 
         UserModel userModel = userService.userInfo(id);
         request.setAttribute("user", userModel);
@@ -73,6 +87,11 @@ public class UserController {
      */
     @RequestMapping("/showUser")
     public String showUser(HttpServletRequest request) {
+
+        UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
+        if (currentUser == null) {
+            return "redirect:/loginPage";
+        }
 
         UserModel userModel = new UserModel();
         List<UserModel> userModels = userService.showUser(userModel);

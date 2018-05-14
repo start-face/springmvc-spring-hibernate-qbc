@@ -53,7 +53,7 @@ public class NewsController {
     }
 
     @RequestMapping("/getNewsList")
-    public String getNewsList(HttpServletRequest request, News news, PageInfo pageInfo) {
+    public String getNewsList(HttpServletRequest request, News news) {
 
         if (news == null) {
             return "newsManager";
@@ -88,19 +88,21 @@ public class NewsController {
     }
 
     @RequestMapping("/deleteNews")
+    @ResponseBody
     public String deleteNews(HttpServletRequest request, Long id) {
 
         if (id == null) {
-            return "login";
+            return "0";
         }
 
         UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
         if (currentUser == null) {
-            return "redirect:/news/getNewsList";
+            return "redirect:/loginPage";
         }
-
         boolean result = newsService.deleteNews(id);
-        System.err.println(result);
-        return "redirect:/news/getNewsList";
+        if (result){
+            return "1";
+        }
+        return "0";
     }
 }

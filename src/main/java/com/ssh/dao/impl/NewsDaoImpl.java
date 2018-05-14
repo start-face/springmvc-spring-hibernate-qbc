@@ -73,7 +73,7 @@ public class NewsDaoImpl implements NewsDao {
     public Page<News> getNewsList(News news, PageInfo pageInfo) {
 
         try {
-            return PageUtil.getPage(news, hibernateTemplate, pageInfo);
+            return PageUtil.getPage(news,"pushDate", hibernateTemplate, pageInfo);
         } catch (HibernateException ex) {
             logger.error("分页查询出错,错误信息是:", ex);
             return null;
