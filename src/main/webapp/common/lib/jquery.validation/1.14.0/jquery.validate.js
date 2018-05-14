@@ -870,7 +870,7 @@ $.extend( $.validator, {
 				element = this.findByName( element.name );
 			}
 
-			// Always apply ignore interceptor
+			// Always apply ignore filter
 			return $( element ).not( this.settings.ignore )[ 0 ];
 		},
 

@@ -5,7 +5,7 @@
   Time: 15:54
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
 </head>
@@ -36,5 +36,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/jquery.validation/1.14.0/jquery.validate.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/jquery.validation/1.14.0/messages_zh.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/nprogress/0.2.0/nprogress.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/html5shiv.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/swfobject.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/respond.min.js"></script>
 </body>
 </html>
