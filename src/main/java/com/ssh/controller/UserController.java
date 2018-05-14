@@ -7,6 +7,7 @@ import com.ssh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -26,6 +27,34 @@ public class UserController {
     private UserService userService;
     @Autowired
     private NewsService newsService;
+
+    @RequestMapping("/updatePassWordPage")
+    public String updatePassWordPage(HttpServletRequest request){
+
+        UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
+        if (currentUser == null) {
+            return "redirect:/loginPage";
+        }
+
+        request.setAttribute("user",currentUser);
+        return "updatePassWordPage";
+    }
+
+    @RequestMapping("/updatePassWord")
+    @ResponseBody
+    public String updatePassWord(HttpServletRequest request,UserModel userModel){
+
+        UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
+        if (currentUser == null) {
+            return "redirect:/loginPage";
+        }
+
+        boolean result = userService.updatePassWord(userModel);
+        if (result){
+            return "1";
+        }
+        return "0";
+    }
 
     @RequestMapping("/getNewsList")
     public String getNewsList(HttpServletRequest request, News news) {

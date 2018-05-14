@@ -25,6 +25,27 @@ public class UserServiceImpl implements UserService {
 
 
     /**
+     * 修改用户密码
+     * @param userModel 用户实体
+     * @return ""
+     */
+    @Override
+    public boolean updatePassWord(UserModel userModel) {
+
+        if (userModel == null){
+            return false;
+        }
+
+        try {
+            userDao.updatePassWord(userModel);
+            return true;
+        }catch (Exception e){
+            logger.error("更新密码失败,失败的信息是:",e);
+            return false;
+        }
+    }
+
+    /**
      * 查询用户个人信息
      * @param id 用户ID
      * @return ""

@@ -73,18 +73,26 @@
                     </c:if>
                     <c:if test="${user eq null}">
                         <li style="margin-left: 73%;"><span>&nbsp;&nbsp;</span></li>
-                        <i class="Hui-iconfont">&#xe705;</i>
                         <li>
                             <a href="/loginPage">登录</a><a href="/register">注册</a>
                         </li>
                     </c:if>
                     <c:if test="${user ne null}">
                         <li style="margin-left: 54%;"><span>&nbsp;&nbsp;</span></li>
-                        <i class="Hui-iconfont Hui-iconfont-avatar2"></i>
-                        <li>
-                                <%--<a><img src="/images/timg.jpg"/>${user.userName}</a>--%>
-                            <a href="/user/userInfo?id=${user.id}">${user.userName}</a>
-                            <a href="/logout">注销登录</a>
+                        <li class="dropDown dropDown_hover">
+                            <i class="Hui-iconfont">&#xe705;</i>
+                            <a href="javascript:;" class="dropDown_A">${user.userName}</a>
+                            <ul class="dropDown-menu menu radius box-shadow">
+                                <li>
+                                    <a href="/user/userInfo?id=${user.id}" target="_blank">个人中心</a>
+                                </li>
+                                <li>
+                                    <a href="/user/updatePassWordPage">修改密码</a>
+                                </li>
+                                <li>
+                                    <a href="/logout" target="_blank">安全退出</a>
+                                </li>
+                            </ul>
                         </li>
                     </c:if>
                 </ul>

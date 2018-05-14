@@ -12,6 +12,13 @@ import java.util.List;
 public interface UserService {
 
     /**
+     * 修改用户密码
+     * @param userModel 用户实体
+     * @return ""
+     */
+    boolean updatePassWord(UserModel userModel);
+
+    /**
      * 查询用户个人信息
      * @param id 用户ID
      * @return ""

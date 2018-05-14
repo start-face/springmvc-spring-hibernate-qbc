@@ -4,6 +4,7 @@ import com.ssh.dao.UserDao;
 import com.ssh.model.UserModel;
 import com.ssh.tools.HibernateFactory;
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +22,23 @@ public class UserDaoImpl implements UserDao {
 
     @Resource
     private HibernateTemplate hibernateTemplate;
+
+    /**
+     * 修改用户密码
+     * @param userModel 用户实体
+     * @return ""
+     */
+    @Override
+    public boolean updatePassWord(UserModel userModel) {
+
+        Session session = HibernateFactory.getSession(hibernateTemplate);
+        try {
+            session.update(userModel);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     /**
      * 查询用户个人信息
