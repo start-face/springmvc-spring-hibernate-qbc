@@ -84,27 +84,66 @@
             url: "/news/getNews" ,//url
             data: $('#form').serialize(),
             success: function (result) {
-
-                var content = "";
-                $.each(result.list, function (i, o) {
-
-                    content += "<tr>";
-                    content += "<td>" + o.title + "</td>";
-                    content += "<td>" + o.newsAddress + "</td>";
-                    content += "<td>" + o.content + "</td>";
-                    content += "<td>" + new Date(o.pushDate).Format('yyyy-MM-dd hh:mm:ss') + "</td>";
-                    content += "<td>" + o.author + "</td>";
-                    content += "<td>" + o.isPopular + "</td>";
-                    content += "<td><a href='/news/deleteNews?id='" + o.id + ">" + '删除' + "</a></td>";
-                    content += "</tr>";
-                });
-                $('#tbody').html(content);
+                $('#tbody').html(parseUserList(result,""));
             },
             error : function() {
                 alert("异常！");
             }
         });
     });
+
+    function parseUserList(res, currentPage) {
+        var content = "";
+        $.each(res.list, function (i, o) {
+
+            content += "<tr>";
+            content += "<td>" + o.title + "</td>";
+            content += "<td>" + o.newsAddress + "</td>";
+            content += "<td>" + o.content + "</td>";
+            content += "<td>" + new Date(o.pushDate).Format('yyyy-MM-dd hh:mm:ss') + "</td>";
+            content += "<td>" + o.author + "</td>";
+            content += "<td>" + o.isPopular + "</td>";
+            content += '<td><a href="javascript:;" onclick="deleteNews(\'' + o.id + '\')">' + '删除' + '</a></td>';
+            content += "</tr>";
+        });
+        return content;
+    }
+
+    function showMsg(result){
+
+        var content = "";
+        $.each(result.list, function (i, o) {
+
+            content += "<tr>";
+            content += "<td>" + o.title + "</td>";
+            content += "<td>" + o.newsAddress + "</td>";
+            content += "<td>" + o.content + "</td>";
+            content += "<td>" + new Date(o.pushDate).Format('yyyy-MM-dd hh:mm:ss') + "</td>";
+            content += "<td>" + o.author + "</td>";
+            content += "<td>" + o.isPopular + "</td>";
+            content += '<td><a href="javascript:;" onclick="deleteNews(\'' + o.id + '\')">' + '删除' + '</a></td>';
+            content += "</tr>";
+        });
+        return content;
+    }
+
+    function deleteNews(value) {
+
+        $.ajax({
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/news/deleteNews",//url
+            data: {"id":value},
+            success: function (result) {
+
+                if(result){
+                    window.location.href="/news/getNewsList";
+                }else {
+                    alert("删除新闻失败");
+                }
+            }
+        });
+    }
 
     $(function () {
         //引入core.js中的方法进行分页

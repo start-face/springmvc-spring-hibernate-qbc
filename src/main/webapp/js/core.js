@@ -32,26 +32,21 @@ var core = (function ($) {
     };
 
     //返回content数据到页面，currentPage便于删除数据时好定位到该类，此处未用
-    function parseUserList(res, currentPage) {
+    function parseUserList1(res, currentPage) {
         var content = "";
         $.each(res.list, function (i, o) {
 
             content += "<tr>";
-                content += "<td>" + o.title + "</td>";
-                content += "<td>" + o.newsAddress + "</td>";
-                content += "<td>" + o.content + "</td>";
-                content += "<td>" + new Date(o.pushDate).Format('yyyy-MM-dd hh:mm:ss') + "</td>";
-                content += "<td>" + o.author + "</td>";
-                content += "<td>" + o.isPopular + "</td>";
-                // content += "<td><a href='/news/deleteNews?id='" + o.id + " id='del'>" + '删除' + "</a></td>";
-                content += "<td><a href='/news/deleteNews?id='" + o.id + " id='del'>" + '删除' + "</a></td>";
+            content += "<td>" + o.title + "</td>";
+            content += "<td>" + o.newsAddress + "</td>";
+            content += "<td>" + o.content + "</td>";
+            content += "<td>" + new Date(o.pushDate).Format('yyyy-MM-dd hh:mm:ss') + "</td>";
+            content += "<td>" + o.author + "</td>";
+            content += "<td>" + o.isPopular + "</td>";
+            content += '<td><a href="javascript:;" onclick="deleteNews(\'' + o.id + '\')">' + '删除' + '</a></td>';
             content += "</tr>";
         });
         return content;
-    }
-
-    function deleteNews(value){
-
     }
 
     //从后台获取json数据
