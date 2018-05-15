@@ -8,9 +8,6 @@ import com.ssh.tools.PageInfo;
 import com.ssh.tools.PageUtil;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.criterion.Projections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.orm.hibernate4.HibernateTemplate;
@@ -29,6 +26,18 @@ public class NewsDaoImpl implements NewsDao {
     private static final Logger logger = LoggerFactory.getLogger(NewsDaoImpl.class);
     @Resource
     private HibernateTemplate hibernateTemplate;
+
+    /**
+     * 恢复删除的信息
+     *
+     * @param id 信息ID
+     * @return ""
+     */
+    @Override
+    public boolean revertNews(Long id) {
+        String sql = "update news_model n set n.status=1 where n.id=" + id;
+        return HibernateFactory.update(hibernateTemplate, sql);
+    }
 
     /**
      * 删除信息

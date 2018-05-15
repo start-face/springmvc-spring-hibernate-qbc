@@ -13,6 +13,13 @@ import java.util.List;
 public interface NewsService {
 
     /**
+     * 恢复删除的信息
+     * @param id 信息ID
+     * @return ""
+     */
+    boolean revertNews(Long id);
+
+    /**
      * 删除信息
      * @param id 信息ID
      * @return ""

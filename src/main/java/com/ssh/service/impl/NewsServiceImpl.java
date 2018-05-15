@@ -24,6 +24,26 @@ public class NewsServiceImpl implements NewsService {
     private NewsDao newsDao;
 
     /**
+     * 恢复删除的信息
+     * @param id 信息ID
+     * @return ""
+     */
+    @Override
+    public boolean revertNews(Long id) {
+
+        if (id == null){
+            return false;
+        }
+
+        try {
+            return newsDao.revertNews(id);
+        }catch (Exception e){
+            logger.error("恢复删除出错,错误信息是:",e);
+            return false;
+        }
+    }
+
+    /**
      * 删除信息
      *
      * @param id 信息ID

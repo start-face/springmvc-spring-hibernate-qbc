@@ -26,6 +26,26 @@ public class NewsController {
     @Autowired
     private NewsService newsService;
 
+    @RequestMapping("/revert")
+    @ResponseBody
+    public String revertNews(HttpServletRequest request, Long id) {
+
+        if (id == null) {
+            return "0";
+        }
+
+        UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
+        if (currentUser == null) {
+            return "redirect:/loginPage";
+        }
+
+        boolean result = newsService.revertNews(id);
+        if (result){
+            return "1";
+        }
+        return "0";
+    }
+
     @RequestMapping("/addNews")
     public String addNews(HttpServletRequest request, News news) {
 
@@ -77,7 +97,7 @@ public class NewsController {
         }
 
         UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
-        if (currentUser == null){
+        if (currentUser == null) {
             Page<News> page = new Page<>(0, 0, 0L, 0, new ArrayList<>());
             return ToolJson.anyToJson(page);
         }
@@ -100,7 +120,7 @@ public class NewsController {
             return "redirect:/loginPage";
         }
         boolean result = newsService.deleteNews(id);
-        if (result){
+        if (result) {
             return "1";
         }
         return "0";
