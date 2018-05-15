@@ -43,10 +43,15 @@ var core = (function ($) {
                 content += "<td>" + new Date(o.pushDate).Format('yyyy-MM-dd hh:mm:ss') + "</td>";
                 content += "<td>" + o.author + "</td>";
                 content += "<td>" + o.isPopular + "</td>";
-                content += "<td><a href='/news/deleteNews?id='" + o.id + ">" + '删除' + "</a></td>";
+                // content += "<td><a href='/news/deleteNews?id='" + o.id + " id='del'>" + '删除' + "</a></td>";
+                content += "<td><a href='/news/deleteNews?id='" + o.id + " id='del'>" + '删除' + "</a></td>";
             content += "</tr>";
         });
         return content;
+    }
+
+    function deleteNews(value){
+
     }
 
     //从后台获取json数据

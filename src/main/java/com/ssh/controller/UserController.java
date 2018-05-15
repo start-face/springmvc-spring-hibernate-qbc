@@ -4,6 +4,7 @@ import com.ssh.model.News;
 import com.ssh.model.UserModel;
 import com.ssh.service.NewsService;
 import com.ssh.service.UserService;
+import com.ssh.tools.Str;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,31 +30,40 @@ public class UserController {
     private NewsService newsService;
 
     @RequestMapping("/updatePassWordPage")
-    public String updatePassWordPage(HttpServletRequest request){
+    public String updatePassWordPage(HttpServletRequest request) {
 
         UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
         if (currentUser == null) {
             return "redirect:/loginPage";
         }
 
-        request.setAttribute("user",currentUser);
+        request.setAttribute("user", currentUser);
         return "updatePassWordPage";
     }
 
     @RequestMapping("/updatePassWord")
     @ResponseBody
-    public String updatePassWord(HttpServletRequest request,UserModel userModel){
+    public String updatePassWord(HttpServletRequest request, Long id, String passWord, String oldPassWord) {
+
+        if (id == null || Str.isBlank(passWord) || Str.isBlank(oldPassWord)) {
+            return "0";
+        }
 
         UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
         if (currentUser == null) {
             return "redirect:/loginPage";
         }
 
-        boolean result = userService.updatePassWord(userModel);
-        if (result){
-            return "1";
+        List<UserModel> findResult = userService.showUser(new UserModel().setId(id).setPassWord(oldPassWord));
+        if (findResult.size() > 0) {
+            boolean result = userService.updatePassWord(id, passWord);
+            if (result) {
+                return "1";
+            }
+            return "0";
         }
-        return "0";
+        //旧密码输入错误
+        return "2";
     }
 
     @RequestMapping("/getNewsList")
@@ -61,7 +71,7 @@ public class UserController {
 
         UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
         List<News> newsList = newsService.getNewsList(news);
-        request.setAttribute("user",currentUser);
+        request.setAttribute("user", currentUser);
         request.setAttribute("newsList", newsList);
         return "index";
     }
@@ -74,7 +84,7 @@ public class UserController {
             return "redirect:/loginPage";
         }
 
-        request.setAttribute("user",currentUser);
+        request.setAttribute("user", currentUser);
         return "pushNews";
     }
 

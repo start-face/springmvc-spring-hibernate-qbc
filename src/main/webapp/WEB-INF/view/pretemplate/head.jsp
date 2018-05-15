@@ -90,7 +90,7 @@
                                     <a href="/user/updatePassWordPage">修改密码</a>
                                 </li>
                                 <li>
-                                    <a href="/logout" target="_blank">安全退出</a>
+                                    <a href="/logout">安全退出</a>
                                 </li>
                             </ul>
                         </li>

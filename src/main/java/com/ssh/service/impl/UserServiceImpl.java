@@ -3,6 +3,7 @@ package com.ssh.service.impl;
 import com.ssh.dao.UserDao;
 import com.ssh.model.UserModel;
 import com.ssh.service.UserService;
+import com.ssh.tools.Str;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,19 +27,19 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 修改用户密码
-     * @param userModel 用户实体
+     * @param id 用户ID
+     * @param passWord 密码
      * @return ""
      */
     @Override
-    public boolean updatePassWord(UserModel userModel) {
+    public boolean updatePassWord(Long id,String passWord) {
 
-        if (userModel == null){
+        if (id == null || Str.isBlank(passWord)){
             return false;
         }
 
         try {
-            userDao.updatePassWord(userModel);
-            return true;
+            return userDao.updatePassWord(id,passWord);
         }catch (Exception e){
             logger.error("更新密码失败,失败的信息是:",e);
             return false;

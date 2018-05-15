@@ -13,10 +13,11 @@ public interface UserService {
 
     /**
      * 修改用户密码
-     * @param userModel 用户实体
+     * @param id 用户ID
+     * @param passWord 密码
      * @return ""
      */
-    boolean updatePassWord(UserModel userModel);
+    boolean updatePassWord(Long id,String passWord);
 
     /**
      * 查询用户个人信息
