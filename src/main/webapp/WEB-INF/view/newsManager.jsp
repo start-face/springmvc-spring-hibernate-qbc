@@ -67,12 +67,12 @@
                 </table>
             </div>
             <!-- 分页标签 -->
-            <div style="margin-left: 40%;" id="page" class="pager"></div>
+            <div style="margin-left: 40%;" id="page" class="pager"></div><br/>
         </div>
-
-        <jsp:include page="pretemplate/footer.jsp"/>
     </div>
 </div>
+<jsp:include page="pretemplate/footer.jsp"/>
+
 <script src="${pageContext.request.contextPath}/js/core.js"></script>
 <script src="${pageContext.request.contextPath}/js/toolDate.js"></script>
 <script>
@@ -95,24 +95,6 @@
     function parseUserList(res, currentPage) {
         var content = "";
         $.each(res.list, function (i, o) {
-
-            content += "<tr>";
-            content += "<td>" + o.title + "</td>";
-            content += "<td>" + o.newsAddress + "</td>";
-            content += "<td>" + o.content + "</td>";
-            content += "<td>" + new Date(o.pushDate).Format('yyyy-MM-dd hh:mm:ss') + "</td>";
-            content += "<td>" + o.author + "</td>";
-            content += "<td>" + o.isPopular + "</td>";
-            content += '<td><a href="javascript:;" onclick="deleteNews(\'' + o.id + '\')">' + '删除' + '</a></td>';
-            content += "</tr>";
-        });
-        return content;
-    }
-
-    function showMsg(result){
-
-        var content = "";
-        $.each(result.list, function (i, o) {
 
             content += "<tr>";
             content += "<td>" + o.title + "</td>";

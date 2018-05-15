@@ -33,12 +33,13 @@ public class PageUtil {
         Session session = HibernateFactory.getSession(hibernateTemplate);
         Criteria criteria = session.createCriteria(clazz.getClass());
         criteria.setProjection(Projections.rowCount());
-        int totalCount = Integer.valueOf(criteria.uniqueResult().toString());
-        Criteria pageCriteria = HibernateFactory.getPageCriteria(criteria, pageInfo, session);
-
+        //创建查询条件
         Example example = Example.create(clazz);
         //排序类型
         criteria.add(example).addOrder(Order.desc(orderType));
+        //查询条件一定要放在获取总数的前面,否则就忽略条件直接取得所有的总数了
+        int totalCount = Integer.valueOf(criteria.uniqueResult().toString());
+        Criteria pageCriteria = HibernateFactory.getPageCriteria(criteria, pageInfo, session);
         return PageUtil.getPage(pageInfo, totalCount, (List<T>) pageCriteria.list());
     }
 
