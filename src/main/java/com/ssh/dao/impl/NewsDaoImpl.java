@@ -39,13 +39,8 @@ public class NewsDaoImpl implements NewsDao {
     @Override
     public boolean deleteNews(Long id) {
 
-        Session session = HibernateFactory.getSession(hibernateTemplate);
-        try {
-            session.update(new News().setId(id).setStatus(0));
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        String sql = "update news_model n set n.status=0 where n.id=" + id;
+        return HibernateFactory.update(hibernateTemplate, sql);
     }
 
     /**
@@ -73,7 +68,7 @@ public class NewsDaoImpl implements NewsDao {
     public Page<News> getNewsList(News news, PageInfo pageInfo) {
 
         try {
-            return PageUtil.getPage(news,"pushDate", hibernateTemplate, pageInfo);
+            return PageUtil.getPage(news, "pushDate", hibernateTemplate, pageInfo);
         } catch (HibernateException ex) {
             logger.error("分页查询出错,错误信息是:", ex);
             return null;

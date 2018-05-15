@@ -88,6 +88,7 @@
             success: function (result) {
 
                 if (result === 1) {
+                    alert("更新成功,请重新登录!")
                     window.location.href = "/logout";
                 } else if(result === 2){
                     alert("旧密码输入错误");

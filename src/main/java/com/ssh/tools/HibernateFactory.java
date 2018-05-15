@@ -18,6 +18,12 @@ public class HibernateFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(HibernateFactory.class);
 
+    /**
+     * 更新数据
+     * @param hibernateTemplate hibernate模版
+     * @param sql sql语句
+     * @return "
+     */
     public static boolean update(HibernateTemplate hibernateTemplate, String sql) {
 
         Session session = HibernateFactory.getSession(hibernateTemplate);
@@ -28,10 +34,19 @@ public class HibernateFactory {
             }
             return false;
         } catch (Exception e) {
+            logger.error("更新数据失败,失败的信息是:", e);
             return false;
         }
     }
 
+    /**
+     * 获取Criteria
+     * @param hibernateTemplate hibernate模版
+     * @param clazz 查询实体
+     * @param t 查询条件
+     * @param <T> 泛型
+     * @return ""
+     */
     public static <T> Criteria getCriteria(HibernateTemplate hibernateTemplate, Class<T> clazz, T t) {
 
         SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();
@@ -42,6 +57,13 @@ public class HibernateFactory {
         return criteria;
     }
 
+    /**
+     * 获取Criteria
+     * @param criteria criteria
+     * @param pageInfo 分页实体
+     * @param session hibernate的session
+     * @return ""
+     */
     public static Criteria getPageCriteria(Criteria criteria, PageInfo pageInfo, Session session) {
 
         criteria.setProjection(null);
@@ -51,6 +73,14 @@ public class HibernateFactory {
         return criteria;
     }
 
+    /**
+     * 获取Criteria
+     * @param clazz 查询实体
+     * @param pageInfo 分页实体
+     * @param session hibernate会话
+     * @param <T> 泛型
+     * @return ""
+     */
     public static <T> Criteria getPageCriteria(Class<T> clazz, PageInfo pageInfo, Session session) {
 
         Criteria criteria = session.createCriteria(clazz);
@@ -62,6 +92,11 @@ public class HibernateFactory {
         return criteria;
     }
 
+    /**
+     * 获取hibernate会话
+     * @param hibernateTemplate hibernate模版
+     * @return ""
+     */
     public static Session getSession(HibernateTemplate hibernateTemplate) {
 
         SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();
