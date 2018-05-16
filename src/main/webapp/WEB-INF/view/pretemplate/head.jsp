@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
@@ -6,7 +5,9 @@
   Time: 13:46
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 
 <head>
@@ -51,8 +52,8 @@
 <header class="navbar-wrapper">
     <div class="navbar navbar-black navbar-fixed-top">
         <div class="container cl">
-            <a class="logo navbar-logo hidden-xs" href="/aboutHui.shtml">欢迎访问</a>
-            <a class="logo navbar-logo-m visible-xs" href="/aboutHui.shtml"></a>
+            <a class="logo navbar-logo hidden-xs" href="/index">欢迎访问</a>
+            <a class="logo navbar-logo-m visible-xs" href="/index"></a>
             <span class="logo navbar-slogan hidden-xs">XX网站</span>
             <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs JS-nav-toggle"
                href="javascript:;">&#xe667;</a>

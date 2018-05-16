@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
@@ -6,7 +5,8 @@
   Time: 10:31
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>用户详情界面</title>
@@ -36,7 +36,7 @@
                 <td>${user.mail}</td>
                 <td>${user.phone}</td>
                 <td>${user.address}</td>
-                <td>${user.birthday}</td>
+                <td><fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd"/></td>
             </tr>
             </tbody>
         </table>
