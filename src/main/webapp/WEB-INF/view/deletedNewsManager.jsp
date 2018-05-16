@@ -73,7 +73,7 @@
 </div>
 <jsp:include page="pretemplate/footer.jsp"/>
 
-<script src="${pageContext.request.contextPath}/js/deletedNews.js.js"></script>
+<script src="${pageContext.request.contextPath}/js/deletedNews.js"></script>
 <script src="${pageContext.request.contextPath}/js/toolDate.js"></script>
 <script>
 
@@ -104,18 +104,18 @@
             content += "<td>" + new Date(o.pushDate).Format('yyyy-MM-dd hh:mm:ss') + "</td>";
             content += "<td>" + o.author + "</td>";
             content += "<td>" + o.isPopular + "</td>";
-            content += '<td><a href="javascript:;" onclick="deleteNews(\'' + o.id + '\')">' + '恢复' + '</a></td>';
+            content += '<td><a href="javascript:;" onclick="revertNews(\'' + o.id + '\')">' + '恢复' + '</a></td>';
             content += "</tr>";
         });
         return content;
     }
 
-    function deleteNews(value) {
+    function revertNews(value) {
 
         $.ajax({
             type: "POST",//方法类型
             dataType: "json",//预期服务器返回的数据类型
-            url: "/news/revertNews",//url
+            url: "/news/revert",//url
             data: {"id":value},
             success: function (result) {
 
@@ -130,7 +130,7 @@
 
     $(function () {
         //引入core.js中的方法进行分页
-        newsList.getUserListByPage();
+        deletedNews.getUserListByPage();
     });
 </script>
 </body>

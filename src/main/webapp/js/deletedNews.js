@@ -1,4 +1,4 @@
-var core = (function ($) {
+var deletedNews = (function ($) {
     var getRootPath = function () {
         var curWwwPath = window.document.location.href;
         var pathName = window.document.location.pathname;
@@ -34,7 +34,7 @@ var core = (function ($) {
     //从后台获取json数据
     var getUserListByPage = function (curr) {
 
-        core.getPage(core.getRootPath() + '/getDeletedNews', {
+        deletedNews.getPage(deletedNews.getRootPath() + '/getDeletedNews', {
             currentPage: curr || 1,
             pageSize: 2
         }, parseUserList);
