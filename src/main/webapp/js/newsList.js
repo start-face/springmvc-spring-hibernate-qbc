@@ -1,4 +1,4 @@
-var core = (function ($) {
+var newsList = (function ($) {
     var getRootPath = function () {
         var curWwwPath = window.document.location.href;
         var pathName = window.document.location.pathname;
@@ -52,7 +52,7 @@ var core = (function ($) {
     //从后台获取json数据
     var getUserListByPage = function (curr) {
 
-        core.getPage(core.getRootPath() + '/getNews', {
+        newsList.getPage(newsList.getRootPath() + '/getNews', {
             currentPage: curr || 1,
             pageSize: 2
         }, parseUserList);

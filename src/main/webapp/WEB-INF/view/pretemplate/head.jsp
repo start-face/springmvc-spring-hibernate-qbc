@@ -67,8 +67,17 @@
                             <a href="/user/pushNewsPage">发布信息</a>
                         </li>
                     <li>
-                        <%--<a href="/news/getNewsList" target="_blank">信息管理</a>--%>
-                        <a href="/news/getNewsList">信息管理</a>
+                        <li class="dropDown dropDown_hover">
+                            <a href="javascript:;" class="dropDown_A">信息管理</a>
+                            <ul class="dropDown-menu menu radius box-shadow">
+                                <li>
+                                    <a href="/news/getNewsList">已发布新闻</a>
+                                </li>
+                                <li>
+                                    <a href="/news/getDeletedNewsList">已删新闻</a>
+                                </li>
+                            </ul>
+                        </li>
                     </li>
                     </c:if>
                     <c:if test="${user eq null}">

@@ -73,7 +73,7 @@
 </div>
 <jsp:include page="pretemplate/footer.jsp"/>
 
-<script src="${pageContext.request.contextPath}/js/newsList.js"></script>
+<script src="${pageContext.request.contextPath}/js/deletedNews.js.js"></script>
 <script src="${pageContext.request.contextPath}/js/toolDate.js"></script>
 <script>
 
@@ -81,7 +81,7 @@
         $.ajax({
             type: "POST",//方法类型
             dataType: "json",//预期服务器返回的数据类型
-            url: "/news/getNews" ,//url
+            url: "/news/getDeletedNews" ,//url
             data: $('#form').serialize(),
             success: function (result) {
                 $('#tbody').html(parseUserList(result,""));
@@ -92,6 +92,7 @@
         });
     });
 
+    //返回content数据到页面，currentPage便于删除数据时好定位到该类，此处未用
     function parseUserList(res, currentPage) {
         var content = "";
         $.each(res.list, function (i, o) {
@@ -103,7 +104,7 @@
             content += "<td>" + new Date(o.pushDate).Format('yyyy-MM-dd hh:mm:ss') + "</td>";
             content += "<td>" + o.author + "</td>";
             content += "<td>" + o.isPopular + "</td>";
-            content += '<td><a href="javascript:;" onclick="deleteNews(\'' + o.id + '\')">' + '删除' + '</a></td>';
+            content += '<td><a href="javascript:;" onclick="deleteNews(\'' + o.id + '\')">' + '恢复' + '</a></td>';
             content += "</tr>";
         });
         return content;
@@ -114,14 +115,14 @@
         $.ajax({
             type: "POST",//方法类型
             dataType: "json",//预期服务器返回的数据类型
-            url: "/news/deleteNews",//url
+            url: "/news/revertNews",//url
             data: {"id":value},
             success: function (result) {
 
                 if(result){
-                    window.location.href="/news/getNewsList";
+                    window.location.href="/news/getDeletedNewsList";
                 }else {
-                    alert("删除新闻失败");
+                    alert("恢复新闻失败");
                 }
             }
         });

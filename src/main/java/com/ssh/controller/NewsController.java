@@ -107,6 +107,41 @@ public class NewsController {
         return ToolJson.anyToJson(newsList);
     }
 
+    @RequestMapping("/getDeletedNewsList")
+    public String getDeletedNewsList(HttpServletRequest request, News news) {
+
+        if (news == null) {
+            return "deletedNewsManager";
+        }
+
+        UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
+        if (currentUser == null) {
+            return "login";
+        }
+        request.setAttribute("user", currentUser);
+        return "deletedNewsManager";
+    }
+
+    @RequestMapping("/getDeletedNews")
+    @ResponseBody
+    public String getDeletedNews(HttpServletRequest request, News news, PageInfo pageInfo) {
+
+        if (news == null || pageInfo == null) {
+            Page<News> page = new Page<>(0, 0, 0L, 0, new ArrayList<>());
+            return ToolJson.anyToJson(page);
+        }
+
+        UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
+        if (currentUser == null) {
+            Page<News> page = new Page<>(0, 0, 0L, 0, new ArrayList<>());
+            return ToolJson.anyToJson(page);
+        }
+
+        news.setStatus(0).setAuthorID(currentUser.getId());
+        Page<News> newsList = newsService.getNewsList(news, pageInfo);
+        return ToolJson.anyToJson(newsList);
+    }
+
     @RequestMapping("/deleteNews")
     @ResponseBody
     public String deleteNews(HttpServletRequest request, Long id) {
