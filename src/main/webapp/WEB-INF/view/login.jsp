@@ -45,8 +45,6 @@
     </div>
 </div>
 <jsp:include page="pretemplate/footer.jsp"/>
-<script type="text/javascript" src="${pageContext.request.contextPath}/common/static/h-ui/src/js/jQuery.Huimodalalert.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
 <script>
 
     $("#btn").click(function () {
@@ -55,7 +53,7 @@
         var username = $("#username").val();
 
         if (passWord === "" || username === "") {
-            alertMsg("未填写完整");
+            alert("未填写完整");
             return false;
         }
 
@@ -69,7 +67,7 @@
                 if (result === 1) {
                     window.location.href = "/user/index";
                 } else {
-                    alertMsg("登录失败,请重试!")
+                    alert("登录失败,请重试!")
                 }
             },
             error: function () {
@@ -77,11 +75,6 @@
             }
         });
     });
-
-    //消息框
-    function alertMsg(value) {
-        $.Huimodalalert(value, 2000);
-    }
 </script>
 </body>
 </html>

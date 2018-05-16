@@ -202,14 +202,15 @@
 </div>
 
 <script>
+
     //弹窗
     function modaldemo() {
         $("#modal-demo").modal("show");
     }
 
     //消息框
-    function modalalertdemo() {
-        $.Huimodalalert('我是消息框，2秒后我自动滚蛋！', 2000);
+    function modalalertdemo(value) {
+        $.Huimodalalert(value, 2000);
     }
 
     $(function () {

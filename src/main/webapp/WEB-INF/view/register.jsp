@@ -24,7 +24,6 @@
             <span class="c-gray">注册界面</span>
         </div>
     </nav>
-
         <div class="container ui-sortable">
             <h3>请填写注册信息</h3>
             <div class="panel panel-default">
@@ -109,7 +108,6 @@
 </div>
 
 <jsp:include page="pretemplate/footer.jsp"/>
-<script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
 <script>
 
     $("#btn").click(function () {
