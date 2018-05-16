@@ -43,5 +43,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/html5shiv.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/swfobject.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/respond.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/common/static/h-ui/src/js/jQuery.Huimodalalert.js"></script>
 </body>
 </html>

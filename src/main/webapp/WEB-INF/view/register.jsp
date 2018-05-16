@@ -8,37 +8,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrom=1">
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-    <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="/common/lib/html5shiv.js"></script>
-    <script type="text/javascript" src="/common/lib/respond.min.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/common/static/h-ui/css/H-ui.min.css"/>
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/common/lib/Hui-iconfont/1.0.8/iconfont.min.css"/>
-    <!--[if lt IE 9]>
-    <link href="/common/static/h-ui/css/H-ui.ie.css" rel="stylesheet" type="text/css"/>
-    <![endif]-->
-    <!--[if IE 6]>
-    <script type="text/javascript" src="/common/lib/DD_belatedPNG_0.0.8a-min.js"></script>
-    <script>DD_belatedPNG.fix('*');</script>
-    <![endif]-->
-    <style type="text/css">
-        .ui-sortable .panel-header {
-            cursor: move
-        }
-    </style>
     <title>欢迎注册</title>
 </head>
 
 <body>
 <div class="containBox">
-        <jsp:include page="pretemplate/head.jsp"/>
+    <jsp:include page="pretemplate/head.jsp"/>
+    <nav class="breadcrumb">
+        <div class="container">
+            <i class="Hui-iconfont">&#xe67f;</i>
+            <a href="/" class="c-primary">首页</a>
+            <span class="c-gray en">&gt;</span>
+            <a href="#">用户</a>
+            <span class="c-gray en">&gt;</span>
+            <span class="c-gray">注册界面</span>
+        </div>
+    </nav>
+
         <div class="container ui-sortable">
             <h3>请填写注册信息</h3>
             <div class="panel panel-default">
@@ -122,6 +108,7 @@
     </div>
 </div>
 
+<jsp:include page="pretemplate/footer.jsp"/>
 <script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
 <script>
 

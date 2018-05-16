@@ -1,5 +1,4 @@
-﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
+﻿<%--
   Created by IntelliJ IDEA.
   User: Lenovo
   Date: 2018/2/5
@@ -7,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -17,9 +17,50 @@
 
 <body ontouchstart>
 
+<div class="sideBox">
+    <ul class="nav navbar-nav pt-20">
+        <li><a href="/loginPage">登录</a></li>
+        <li><a href="/register">注册</a></li>
+        <li><a href="#">关于我们</a></li>
+        <li><a href="#">联系我们</a></li>
+        <li><a href="#">隐私保护</a></li>
+        <li><a href="#">免责声明</a></li>
+    </ul>
+</div>
+
 <div class="containBox">
+    <div class="containBox-bg"></div>
     <jsp:include page="pretemplate/head.jsp"/>
     <div class="wap-container">
+        <div id="slider-3">
+            <div class="slider">
+                <div class="bd">
+                    <ul>
+                        <li>
+                            <a href="http://www.h-ui.net/" target="_blank">
+                                <img src="/common/temp/banner1.jpg">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.h-ui.net/zhaoshang.shtml" target="_blank">
+                                <img src="/common/temp/banner2.jpg">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://h-ui.net/H-ui.admin.shtml" target="_blank">
+                                <img src="/common/temp/banner3.jpg">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <ol class="hd cl dots">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                </ol>
+            </div>
+        </div>
+
         <nav class="breadcrumb">
             <div class="container">
                 <i class="Hui-iconfont">&#xe67f;</i>
@@ -62,7 +103,8 @@
                                                 <td>${one.title}</td>
                                                 <td>${one.newsAddress}</td>
                                                 <td>${one.content}</td>
-                                                <td><fmt:formatDate value="${one.pushDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                                <td><fmt:formatDate value="${one.pushDate}"
+                                                                    pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                                 <td>${one.author}</td>
                                                 <td>${one.isPopular}</td>
                                                 <td>${one.images}</td>
@@ -100,7 +142,8 @@
                                                 <td>${one.title}</td>
                                                 <td>${one.newsAddress}</td>
                                                 <td>${one.content}</td>
-                                                <td><fmt:formatDate value="${one.pushDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                                <td><fmt:formatDate value="${one.pushDate}"
+                                                                    pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                                 <td>${one.author}</td>
                                                 <td>${one.isPopular}</td>
                                                 <td>${one.images}</td>
@@ -138,7 +181,8 @@
                                                 <td>${one.title}</td>
                                                 <td>${one.newsAddress}</td>
                                                 <td>${one.content}</td>
-                                                <td><fmt:formatDate value="${one.pushDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                                <td><fmt:formatDate value="${one.pushDate}"
+                                                                    pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                                 <td>${one.author}</td>
                                                 <td>${one.isPopular}</td>
                                                 <td>${one.images}</td>
