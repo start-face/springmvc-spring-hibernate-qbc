@@ -76,6 +76,7 @@
                         <span>新闻</span>
                         <span>科技</span>
                         <span>军事</span>
+                        <span>视频</span>
                     </div>
                     <div class="tabCon">
                         <div class="panel panel-default mt-20">
@@ -191,6 +192,17 @@
                                     </c:forEach>
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tabCon">
+                        <div class="panel panel-default mt-20">
+                            <div class="panel-header clearfix">
+                                <span class="f-l">视频</span>
+                                <span class="f-r">视频播放</span>
+                            </div>
+                            <div class="panel-body">
+                                <jsp:include page="videoPage.jsp"/>
                             </div>
                         </div>
                     </div>

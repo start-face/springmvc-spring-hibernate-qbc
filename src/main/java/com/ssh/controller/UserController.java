@@ -5,10 +5,14 @@ import com.ssh.model.UserModel;
 import com.ssh.service.NewsService;
 import com.ssh.service.UserService;
 import com.ssh.tools.Str;
+import com.ssh.tools.UploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -28,6 +32,20 @@ public class UserController {
     private UserService userService;
     @Autowired
     private NewsService newsService;
+
+    @RequestMapping(value = "/upload")
+    @ResponseBody
+    public String upload(@RequestParam(value = "file", required = false) MultipartFile file) {
+
+        String filePath = "";
+
+        try {
+            filePath = UploadUtil.upload(file, "D:/temp");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return filePath;
+    }
 
     @RequestMapping("/updatePassWordPage")
     public String updatePassWordPage(HttpServletRequest request) {

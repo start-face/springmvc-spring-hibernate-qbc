@@ -13,12 +13,14 @@
 <body>
 <jsp:include page="pretemplate/head.jsp"/>
 
-<form action="/news/addNews" method="post"<%-- class="form form-horizontal" --%>id="demoform-3">
+<form action="/news/addNews" method="post" enctype="multipart/form-data"
+      <%-- class="form form-horizontal" --%>id="demoform-3">
     <legend>信息发布中心</legend>
     <div class="row cl">
         <label class="form-label col-xs-4 col-sm-3">标题：</label>
         <div class="formControls col-xs-8 col-sm-6">
-            <input type="text" class="input-text" placeholder="请输入标题" name="title" id="title" datatype="e" nullmsg="请输入邮箱！">
+            <input type="text" class="input-text" placeholder="请输入标题" name="title" id="title" datatype="e"
+                   nullmsg="请输入邮箱！">
         </div>
         <div class="col-xs-8 col-sm-6 col-xs-offset-4 col-sm-offset-3"></div>
     </div>
@@ -40,11 +42,13 @@
         <label class="form-label col-xs-4 col-sm-3">附件：</label>
         <div class="formControls col-xs-8 col-sm-6">
             <span class="btn-upload form-group">
-                <input class="input-text upload-url" type="text" name="images" id="images" readonly datatype="*" nullmsg="请添加附件！" style="width:200px">
-                <a href="javascript:void();" class="btn btn-primary upload-btn">
+                <input type="hidden" value="" name="images"/>
+                <input class="input-text upload-url" type="text" name="file" readonly datatype="*"
+                       nullmsg="请添加附件！" style="width:200px">
+                <a href="" class="btn btn-primary upload-btn">
                     <i class="Hui-iconfont">&#xe642;</i> 浏览文件
                 </a>
-                <input type="file" multiple name="file-2" class="input-file">
+                <input type="file" multiple name="file" id="images" class="input-file">
             </span>
         </div>
         <div class="col-xs-8 col-sm-6 col-xs-offset-4 col-sm-offset-3"></div>
@@ -86,7 +90,36 @@
 
 <!--表单验证插件-->
 <script type="text/javascript">
+    $("#images").blur(function () {
 
+        var formData = new FormData();
+        var name = $("#images").val();
+        formData.append("file", $("#images")[0].files[0]);
+        formData.append("name", name);
+        $.ajax({
+            url: "/user/upload",
+            type: 'POST',
+            data: formData,
+            // 告诉jQuery不要去处理发送的数据
+            processData: false,
+            // 告诉jQuery不要去设置Content-Type请求头
+            contentType: false,
+            beforeSend: function () {
+                console.log("正在进行，请稍候");
+            },
+            success: function (responseStr) {
+                if (responseStr.status === 0) {
+                    console.log("成功" + responseStr);
+                } else {
+                    console.log("失败");
+                }
+            },
+            error: function (responseStr) {
+                console.log(responseStr)
+                console.log("error");
+            }
+        });
+    });
 </script>
 </body>
 </html>
