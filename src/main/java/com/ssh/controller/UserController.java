@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -35,20 +36,20 @@ public class UserController {
 
     @RequestMapping("/upload")
     @ResponseBody
-    public String upload(@RequestParam(value = "file", required = false) MultipartFile file) {
+    public String upload(HttpServletRequest request,@RequestParam(value = "file", required = false) MultipartFile file) {
 
         if (file == null){
-            return "0";
+            return "";
         }
-
-        String filePath = "";
 
         try {
-            filePath = UploadUtil.upload(file, "D:/temp/");
+//            return UploadUtil.upload(file, "/images/");
+            String realPath = request.getRealPath("");
+            return UploadUtil.upload(file, realPath+"/images/");
         } catch (Exception e) {
             e.printStackTrace();
+            return "";
         }
-        return filePath;
     }
 
     @RequestMapping("/updatePassWordPage")
@@ -133,7 +134,7 @@ public class UserController {
     public String index(HttpServletRequest request, News news) {
 
         UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
-        news.setStatus(1);
+        news.setStatus(1).setAuthorID(currentUser.getId());
         List<News> newsList = newsService.getNewsList(news);
         request.setAttribute("newsList", newsList);
         request.setAttribute("user", currentUser);

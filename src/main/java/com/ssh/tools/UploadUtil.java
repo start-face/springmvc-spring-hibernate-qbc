@@ -16,6 +16,11 @@ public class UploadUtil {
 
     public static String upload(MultipartFile file, String pic_path) throws Exception {
 
+        File filePath = new File(pic_path);
+        if (!filePath.exists()) {
+            filePath.mkdir();
+        }
+
         //原始名称
         String originalFilename = file.getOriginalFilename();
         //上传图片
@@ -26,7 +31,8 @@ public class UploadUtil {
             File newFile = new File(pic_path + newFileName);
             //将内存中的数据写入磁盘
             file.transferTo(newFile);
-            return pic_path + newFileName;
+//            return pic_path + newFileName;
+            return "/" + newFileName;
         }
         return "";
     }

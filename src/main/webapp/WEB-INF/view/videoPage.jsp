@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
@@ -12,34 +13,38 @@
 </head>
 <body>
 
-<object id="video" width="400" height="200" border="0" classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA">
-    　　
-    <param name="ShowDisplay" value="0">
-    　　
-    <param name="ShowControls" value="1">
-    　　
-    <param name="AutoStart" value="1">
-    　　
-    <param name="AutoRewind" value="0">
-    　　
-    <param name="PlayCount" value="0">
-    　　
-    <param name="Appearance" value="0">
-    　　
-    <param name="BorderStyle" value="0">
-    　　
-    <param name="MovieWindowHeight" value="240">
-    　　
-    <param name="MovieWindowWidth" value="320">
-    　　
-    <param name="FileName" value="/Mbar.avi">
-    　　
-    <embed width="400" height="200" border="0" showdisplay="0" showcontrols="1" autostart="1" autorewind="0"
-           playcount="0" moviewindowheight="240" moviewindowwidth="320" filename="/movie.mp4" src="/images/movie.mp4">
+<c:forEach items="${newsList}" var="one">
+    <c:if test="${not empty one.images}">
+        <object id="video" width="400" height="200" border="0" classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA">
+            　　
+            <param name="ShowDisplay" value="0">
+            　　
+            <param name="ShowControls" value="1">
+            　　
+            <param name="AutoStart" value="1">
+            　　
+            <param name="AutoRewind" value="0">
+            　　
+            <param name="PlayCount" value="0">
+            　　
+            <param name="Appearance" value="0">
+            　　
+            <param name="BorderStyle" value="0">
+            　　
+            <param name="MovieWindowHeight" value="540">
+            　　
+            <param name="MovieWindowWidth" value="680">
+            　　
+            <param name="FileName" value="movie.mp4">
+            　　
+            <embed width="400" height="200" border="0" showdisplay="0" showcontrols="1" autostart="1" autorewind="0"
+                   <%--playcount="0" moviewindowheight="240" moviewindowwidth="320" filename="/movie.mp4" src="/images/movie.mp4">--%>
+                   playcount="0" moviewindowheight="240" moviewindowwidth="320" filename="/movie.mp4" src="${one.images}">
 
-    </embed>
-    　　
-</object>
-
+            </embed>
+            　　
+        </object>
+    </c:if>
+</c:forEach>
 </body>
 </html>
