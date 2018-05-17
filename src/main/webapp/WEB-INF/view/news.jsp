@@ -27,11 +27,11 @@
         <label class="form-label col-xs-4 col-sm-3">信息类型：</label>
         <div class="formControls skin-minimal col-xs-8 col-sm-6">
             <div class="check-box">
-                <input type="checkbox" id="newsType-1" name="newsType" datatype="*" nullmsg="信息类型不能为空！">
+                <input type="checkbox" id="technogic" value="科技" name="newsType" datatype="*" nullmsg="信息类型不能为空！">
                 <label>科技</label>
             </div>
             <div class="check-box">
-                <input type="checkbox" id="newsType-2" name="newsType">
+                <input type="checkbox" id="war" value="军事" name="newsType">
                 <label>军事</label>
             </div>
         </div>
@@ -41,7 +41,7 @@
         <label class="form-label col-xs-4 col-sm-3">附件：</label>
         <div id="up" class="formControls col-xs-8 col-sm-6">
             <span id="upFile" class="btn-upload form-group">
-                <input type="hidden" value="" id="img" name="file"/>
+                <input type="hidden" value="" id="img" name="images"/>
                 <input class="input-text upload-url" type="text" name="file" readonly datatype="*" nullmsg="请添加附件！" style="width:200px">
                 <a href="" class="btn btn-primary upload-btn"><i class="Hui-iconfont">&#xe642;</i> 浏览文件</a>
                 <input type="file" multiple="multiple" name="file" id="images" class="input-file">
@@ -116,12 +116,19 @@
     function check(){
 
         var title = $("#title").val();
-        var newsType_1 = $("#newsType-1").val();
-        var newsType_2 = $("#newsType-2").val();
+        var newsType_1 = $("#technogic").val();
+        var newsType_2 = $("#war").val();
         var newsAddress = $("#newsAddress").val();
         var content = $("#content").val();
 
-        if (title === "" || newsType_1 === "" || newsType_2 === "" || newsAddress ==="" || content === ""){
+        alert(newsType_1)
+        alert(newsType_2)
+
+        if (title === "" || newsAddress ==="" || content === ""){
+            return false;
+        }
+
+        if (newsType_1 === "" && newsType_2 === ""){
             return false;
         }
         return true;
@@ -146,23 +153,6 @@
                 alert("网络错误，请重试！！");
             }
         });
-
-        // $.ajax({
-        //     url: "/user/upload",
-        //     type: 'POST',
-        //     cache: false,
-        //     // data: new FormData($('#infoLogoForm')[0]),
-        //     data: new FormData(upFile),
-        //     processData: false,
-        //     contentType: false,
-        //     dataType: "json",
-        //     beforeSend: function () {
-        //         alert(12)
-        //     },
-        //     success: function (data) {
-        //         alert(data.msg);
-        //     }
-        // });
     });
 </script>
 </body>
