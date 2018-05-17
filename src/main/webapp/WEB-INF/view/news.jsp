@@ -121,9 +121,6 @@
         var newsAddress = $("#newsAddress").val();
         var content = $("#content").val();
 
-        alert(newsType_1)
-        alert(newsType_2)
-
         if (title === "" || newsAddress ==="" || content === ""){
             return false;
         }
