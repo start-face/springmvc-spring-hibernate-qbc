@@ -47,10 +47,11 @@ public class NewsController {
     }
 
     @RequestMapping("/addNews")
+    @ResponseBody
     public String addNews(HttpServletRequest request, News news) {
 
         if (news == null) {
-            return "pushNews";
+            return "0";
         }
 
         UserModel currentUser = (UserModel) request.getSession().getAttribute("currentUser");
@@ -65,11 +66,10 @@ public class NewsController {
                 .setStatus(1);
         boolean result = newsService.addNews(news);
         if (result) {
-            return "redirect:/user/index";
+            return "1";
         }
-
         request.setAttribute("user", currentUser);
-        return "pushNews";
+        return "0";
     }
 
     @RequestMapping("/getNewsList")

@@ -33,14 +33,18 @@ public class UserController {
     @Autowired
     private NewsService newsService;
 
-    @RequestMapping(value = "/upload")
+    @RequestMapping("/upload")
     @ResponseBody
     public String upload(@RequestParam(value = "file", required = false) MultipartFile file) {
+
+        if (file == null){
+            return "0";
+        }
 
         String filePath = "";
 
         try {
-            filePath = UploadUtil.upload(file, "D:/temp");
+            filePath = UploadUtil.upload(file, "D:/temp/");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -103,7 +107,7 @@ public class UserController {
         }
 
         request.setAttribute("user", currentUser);
-        return "pushNews";
+        return "news";
     }
 
     @RequestMapping("/userInfo")
