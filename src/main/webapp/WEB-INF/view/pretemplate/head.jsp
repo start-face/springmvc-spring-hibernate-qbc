@@ -28,6 +28,11 @@
     <link href="${pageContext.request.contextPath}/common/lib/layer/2.4/skin/layer.css" rel="stylesheet" type="text/css"/>
     <link href="${pageContext.request.contextPath}/common/lib/laypage/1.2/skin/laypage.css" rel="stylesheet" type="text/css"/>
 
+    <!--引入多图片上传插件Web Uploader的CSS-->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/webuploader.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/oosUploadStyle.css" />
+
     <!--[if IE 6]>
     <script type="text/javascript" src="/common/lib/DD_belatedPNG_0.0.8a-min.js"></script>
     <script>DD_belatedPNG.fix('*');</script>

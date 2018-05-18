@@ -41,7 +41,48 @@
         </table>
     </div>
 </div>
-<jsp:include page="pretemplate/footer.jsp"/>
 
+<div id="wrapper">
+    <div id="container">
+        <div id="uploader">
+            <div class="queueList">
+                <div id="dndArea" class="placeholder">
+                    <div class="" id="uploaderPick">
+                        <a id="chooseFile" href="javascript:void(0);" class="text">点击选择文件</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="statusBar" class="statusBar">
+            <div class="total-progress">
+                <div id="totalProgressBar"
+                     class="total-progress-bar"
+                     role="progressbar"
+                     aria-valuenow="0"
+                     aria-valuemin="0"
+                     aria-valuemax="100"
+                     style="min-width: 2em;">
+                    0%
+                </div>
+            </div>
+            <div class="start-uploader" style="padding-right:20px; float: right;">
+                <a id="startUpload" href="javascript:void(0);" class="text">开始上传</a>
+            </div>
+            <div class="start-uploader" style="padding:0 20px; float: right;margin: 20 10px">
+                <a id="addBtn" href="javascript:void(0);" class="text">继续添加</a>
+            </div>
+
+        </div>
+        <div class="" style="clear: both;">
+        </div>
+    </div>
+</div>
+<div class="container bs-docs-container">
+    <form id="form">
+        <input id="js-file" type="file" style="display:none;"  multiple="multiple"/>
+    </form>
+</div>
+
+<jsp:include page="pretemplate/footer.jsp"/>
 </body>
 </html>
