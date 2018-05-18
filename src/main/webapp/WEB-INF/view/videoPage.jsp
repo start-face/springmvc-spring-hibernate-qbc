@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
-    <title>用户详情界面</title>
+    <title></title>
 </head>
 <body>
 
@@ -38,11 +38,9 @@
             <param name="FileName" value="movie.mp4">
             　　
             <embed width="400" height="200" border="0" showdisplay="0" showcontrols="1" autostart="1" autorewind="0"
-                   <%--playcount="0" moviewindowheight="240" moviewindowwidth="320" filename="/movie.mp4" src="/images/movie.mp4">--%>
                    playcount="0" moviewindowheight="240" moviewindowwidth="320" filename="/movie.mp4" src="${one.images}">
 
             </embed>
-            　　
         </object>
     </c:if>
 </c:forEach>

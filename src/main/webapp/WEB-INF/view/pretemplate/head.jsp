@@ -25,8 +25,8 @@
     <link href="/common/static/h-ui/css/H-ui.ie.css" rel="stylesheet" type="text/css"/>
     <![endif]-->
 
-    <link href="/common/lib/layer/2.4/skin/layer.css" rel="stylesheet" type="text/css"/>
-    <link href="/common/lib/laypage/1.2/skin/laypage.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/common/lib/layer/2.4/skin/layer.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/common/lib/laypage/1.2/skin/laypage.css" rel="stylesheet" type="text/css"/>
 
     <!--[if IE 6]>
     <script type="text/javascript" src="/common/lib/DD_belatedPNG_0.0.8a-min.js"></script>
@@ -61,21 +61,21 @@
                 <ul class="cl">
                     <%--target="_blank" 表示新开窗口--%>
                     <li class="current">
-                        <a href="/index">首页</a>
+                        <a href="${pageContext.request.contextPath}/index">首页</a>
                     </li>
                     <c:if test="${user ne null}">
                         <li>
-                            <a href="/user/pushNewsPage">发布信息</a>
+                            <a href="${pageContext.request.contextPath}/user/pushNewsPage">发布信息</a>
                         </li>
                     <li>
                         <li class="dropDown dropDown_hover">
                             <a href="javascript:;" class="dropDown_A">信息管理</a>
                             <ul class="dropDown-menu menu radius box-shadow">
                                 <li>
-                                    <a href="/news/getNewsList">已发布新闻</a>
+                                    <a href="${pageContext.request.contextPath}/news/getNewsList">已发布新闻</a>
                                 </li>
                                 <li>
-                                    <a href="/news/getDeletedNewsList">已删新闻</a>
+                                    <a href="${pageContext.request.contextPath}/news/getDeletedNewsList">已删新闻</a>
                                 </li>
                             </ul>
                         </li>
@@ -84,7 +84,8 @@
                     <c:if test="${user eq null}">
                         <li style="margin-left: 73%;"><span>&nbsp;&nbsp;</span></li>
                         <li>
-                            <a href="/loginPage">登录</a><a href="/register">注册</a>
+                            <a href="${pageContext.request.contextPath}/loginPage">登录</a>
+                            <a href="${pageContext.request.contextPath}/register">注册</a>
                         </li>
                     </c:if>
                     <c:if test="${user ne null}">
@@ -94,13 +95,13 @@
                             <a href="javascript:;" class="dropDown_A">${user.userName}</a>
                             <ul class="dropDown-menu menu radius box-shadow">
                                 <li>
-                                    <a href="/user/userInfo?id=${user.id}" target="_blank">个人中心</a>
+                                    <a href="${pageContext.request.contextPath}/user/userInfo?id=${user.id}" target="_blank">个人中心</a>
                                 </li>
                                 <li>
-                                    <a href="/user/updatePassWordPage">修改密码</a>
+                                    <a href="${pageContext.request.contextPath}/user/updatePassWordPage">修改密码</a>
                                 </li>
                                 <li>
-                                    <a href="/logout">安全退出</a>
+                                    <a href="${pageContext.request.contextPath}/logout">安全退出</a>
                                 </li>
                             </ul>
                         </li>

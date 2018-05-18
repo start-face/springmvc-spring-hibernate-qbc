@@ -17,7 +17,7 @@
     <jsp:include page="pretemplate/head.jsp"/>
     <div class="wap-container">
         <i class="Hui-iconfont">&#xe67f;</i>
-        <a href="/" class="c-primary">首页</a>
+        <a href="${pageContext.request.contextPath}/" class="c-primary">首页</a>
         <span class="c-gray en">&gt;</span>
         <a href="#">安全</a>
         <span class="c-gray en">&gt;</span>
@@ -31,7 +31,7 @@
             </div>
 
             <div class='panel-body'>
-                <form id="form" action="/user/updatePassWord" method="post">
+                <form id="form" action="${pageContext.request.contextPath}/user/updatePassWord" method="post">
 
                     <table class='table table-border table-bordered table-bg'>
                         <tr>
@@ -83,13 +83,13 @@
         $.ajax({
             type: "POST",//方法类型
             dataType: "json",//预期服务器返回的数据类型
-            url: "/user/updatePassWord",//url
+            url: "${pageContext.request.contextPath}/user/updatePassWord",//url
             data: $('#form').serialize(),
             success: function (result) {
 
                 if (result === 1) {
-                    alert("更新成功,请重新登录!")
-                    window.location.href = "/logout";
+                    alert("更新成功,请重新登录!");
+                    window.location.href = "${pageContext.request.contextPath}/logout";
                 } else if(result === 2){
                     alert("旧密码输入错误");
                 }else {

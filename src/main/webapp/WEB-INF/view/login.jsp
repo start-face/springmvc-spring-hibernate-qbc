@@ -60,12 +60,12 @@
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: "/login",
+            url: "${pageContext.request.contextPath}/login",
             data: $('#demoform').serialize(),
             success: function (result) {
 
                 if (result === 1) {
-                    window.location.href = "/user/index";
+                    window.location.href = "${pageContext.request.contextPath}/user/index";
                 } else {
                     alert("登录失败,请重试!")
                 }

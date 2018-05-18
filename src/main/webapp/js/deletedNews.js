@@ -34,7 +34,7 @@ var deletedNews = (function ($) {
     //从后台获取json数据
     var getUserListByPage = function (curr) {
 
-        deletedNews.getPage(deletedNews.getRootPath() + '/getDeletedNews', {
+        deletedNews.getPage(deletedNews.getRootPath() + '/news/getDeletedNews', {
             currentPage: curr || 1,
             pageSize: 2
         }, parseUserList);

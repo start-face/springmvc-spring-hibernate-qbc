@@ -43,9 +43,7 @@ public class UserController {
         }
 
         try {
-//            return UploadUtil.upload(file, "/images/");
-            String realPath = request.getRealPath("");
-            return UploadUtil.upload(file, realPath+"/images/");
+            return UploadUtil.upload(file, "D:/temp/");
         } catch (Exception e) {
             e.printStackTrace();
             return "";

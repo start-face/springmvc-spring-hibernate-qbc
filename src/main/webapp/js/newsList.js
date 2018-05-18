@@ -52,7 +52,7 @@ var newsList = (function ($) {
     //从后台获取json数据
     var getUserListByPage = function (curr) {
 
-        newsList.getPage(newsList.getRootPath() + '/getNews', {
+        newsList.getPage(newsList.getRootPath() + '/news/getNews', {
             currentPage: curr || 1,
             pageSize: 2
         }, parseUserList);

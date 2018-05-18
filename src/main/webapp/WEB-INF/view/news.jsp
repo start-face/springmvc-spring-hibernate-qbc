@@ -41,7 +41,7 @@
         <label class="form-label col-xs-4 col-sm-3">附件：</label>
         <div id="up" class="formControls col-xs-8 col-sm-6">
             <span id="upFile" class="btn-upload form-group">
-                <input type="hidden" value="" id="img" name="images"/>
+                <input type="text" value="" id="img" name="images"/>
                 <input class="input-text upload-url" type="text" name="file" readonly datatype="*" nullmsg="请添加附件！" style="width:200px">
                 <a href="" class="btn btn-primary upload-btn"><i class="Hui-iconfont">&#xe642;</i> 浏览文件</a>
                 <input type="file" multiple="multiple" name="file" id="images" class="input-file">
@@ -97,12 +97,12 @@
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: "/news/addNews",
+            url: "${pageContext.request.contextPath}/news/addNews",
             data: $('#demoform-3').serialize(),
             success: function (result) {
 
                 if (result === 1) {
-                    window.location.href="/user/index";
+                    window.location.href="${pageContext.request.contextPath}/user/index";
                 } else {
                     alert("新闻发布失败,请重试!")
                 }
@@ -134,7 +134,7 @@
     $("#images").on("change", function () {
 
         $.ajax({
-            url:"/user/upload",
+            url:"${pageContext.request.contextPath}/user/upload",
             type:"post",
             data: new FormData($("#demoform-3")[0]),
             cache: false,

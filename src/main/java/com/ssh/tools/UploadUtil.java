@@ -9,7 +9,7 @@ import java.util.UUID;
  * 上传图片工具类
  *
  * @author FaceFeel
- * @date 2017/2/21
+ * @Created  2017/2/21
  */
 
 public class UploadUtil {
@@ -18,13 +18,16 @@ public class UploadUtil {
 
         File filePath = new File(pic_path);
         if (!filePath.exists()) {
-            filePath.mkdir();
+            boolean result = filePath.mkdir();
+            if (!result){
+                return "";
+            }
         }
 
         //原始名称
         String originalFilename = file.getOriginalFilename();
         //上传图片
-        if (file != null && originalFilename != null && originalFilename.length() > 0) {
+        if (originalFilename != null && originalFilename.length() > 0) {
             //新的图片名称
             String newFileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
             //新图片
@@ -32,7 +35,7 @@ public class UploadUtil {
             //将内存中的数据写入磁盘
             file.transferTo(newFile);
 //            return pic_path + newFileName;
-            return "/" + newFileName;
+            return "/uploadfile/" + newFileName;
         }
         return "";
     }

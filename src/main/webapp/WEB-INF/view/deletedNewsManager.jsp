@@ -27,7 +27,7 @@
         <nav class="breadcrumb">
             <div class="container">
                 <i class="Hui-iconfont">&#xe67f;</i>
-                <a href="/" class="c-primary">首页</a>
+                <a href="${pageContext.request.contextPath}/" class="c-primary">首页</a>
                 <span class="c-gray en">&gt;</span>
                 <a href="#">新闻</a>
                 <span class="c-gray en">&gt;</span>
@@ -38,7 +38,7 @@
         <div class="container ui-sortable">
 
             <div class="clearfix">
-                <form id="form" method="post" action="/news/getNews">
+                <form id="form" method="post" action="${pageContext.request.contextPath}/news/getNews">
                     <input type="text" placeholder="请输入关键词" class="input-text ac_input" name="title" value="${title}" id="search_text" autocomplete="off" style="width:300px">
                     <button type="button" class="btn btn-default" id="search_button">搜索</button>
                 </form>
@@ -81,7 +81,7 @@
         $.ajax({
             type: "POST",//方法类型
             dataType: "json",//预期服务器返回的数据类型
-            url: "/news/getDeletedNews" ,//url
+            url: "${pageContext.request.contextPath}/news/getDeletedNews" ,//url
             data: $('#form').serialize(),
             success: function (result) {
                 $('#tbody').html(parseUserList(result,""));
@@ -115,12 +115,12 @@
         $.ajax({
             type: "POST",//方法类型
             dataType: "json",//预期服务器返回的数据类型
-            url: "/news/revert",//url
+            url: "${pageContext.request.contextPath}/news/revert",//url
             data: {"id":value},
             success: function (result) {
 
                 if(result){
-                    window.location.href="/news/getDeletedNewsList";
+                    window.location.href="${pageContext.request.contextPath}/news/getDeletedNewsList";
                 }else {
                     alert("恢复新闻失败");
                 }

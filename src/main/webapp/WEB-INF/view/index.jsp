@@ -19,8 +19,8 @@
 
 <div class="sideBox">
     <ul class="nav navbar-nav pt-20">
-        <li><a href="/loginPage">登录</a></li>
-        <li><a href="/register">注册</a></li>
+        <li><a href="${pageContext.request.contextPath}/loginPage">登录</a></li>
+        <li><a href="${pageContext.request.contextPath}/register">注册</a></li>
         <li><a href="#">关于我们</a></li>
         <li><a href="#">联系我们</a></li>
         <li><a href="#">隐私保护</a></li>
@@ -38,17 +38,17 @@
                     <ul>
                         <li>
                             <a href="http://www.h-ui.net/" target="_blank">
-                                <img src="/common/temp/banner1.jpg">
+                                <img src="${pageContext.request.contextPath}/common/temp/banner1.jpg">
                             </a>
                         </li>
                         <li>
                             <a href="http://www.h-ui.net/zhaoshang.shtml" target="_blank">
-                                <img src="/common/temp/banner2.jpg">
+                                <img src="${pageContext.request.contextPath}/common/temp/banner2.jpg">
                             </a>
                         </li>
                         <li>
                             <a href="http://h-ui.net/H-ui.admin.shtml" target="_blank">
-                                <img src="/common/temp/banner3.jpg">
+                                <img src="${pageContext.request.contextPath}/common/temp/banner3.jpg">
                             </a>
                         </li>
                     </ul>
@@ -64,7 +64,7 @@
         <nav class="breadcrumb">
             <div class="container">
                 <i class="Hui-iconfont">&#xe67f;</i>
-                <a href="/" class="c-primary">首页</a>
+                <a href="${pageContext.request.contextPath}/" class="c-primary">首页</a>
                 <span class="c-gray en">&gt;</span>
             </div>
         </nav>

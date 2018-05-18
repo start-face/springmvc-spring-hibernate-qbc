@@ -17,7 +17,7 @@
     <nav class="breadcrumb">
         <div class="container">
             <i class="Hui-iconfont">&#xe67f;</i>
-            <a href="/" class="c-primary">首页</a>
+            <a href="${pageContext.request.contextPath}/" class="c-primary">首页</a>
             <span class="c-gray en">&gt;</span>
             <a href="#">用户</a>
             <span class="c-gray en">&gt;</span>
@@ -123,13 +123,13 @@
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: "/registerUser",
+            url: "${pageContext.request.contextPath}/registerUser",
             data: $('#demoform').serialize(),
             success: function (result) {
 
                 console.log(result);
                 if (result === 1) {
-                    window.location.href="/loginPage";
+                    window.location.href="${pageContext.request.contextPath}/loginPage";
                 } else {
                     alert("注册失败,请重试!")
                 }
