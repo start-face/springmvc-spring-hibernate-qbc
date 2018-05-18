@@ -52,8 +52,8 @@
 <header class="navbar-wrapper">
     <div class="navbar navbar-black navbar-fixed-top">
         <div class="container cl">
-            <a class="logo navbar-logo hidden-xs" href="/index">欢迎访问</a>
-            <a class="logo navbar-logo-m visible-xs" href="/index"></a>
+            <a class="logo navbar-logo hidden-xs" href="${pageContext.request.contextPath}/index">欢迎访问</a>
+            <a class="logo navbar-logo-m visible-xs" href="${pageContext.request.contextPath}/index"></a>
             <span class="logo navbar-slogan hidden-xs">XX网站</span>
             <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs JS-nav-toggle"
                href="javascript:;">&#xe667;</a>

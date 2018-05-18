@@ -36,7 +36,7 @@ public class UserController {
 
     @RequestMapping("/upload")
     @ResponseBody
-    public String upload(HttpServletRequest request,@RequestParam(value = "file", required = false) MultipartFile file) {
+    public String upload(@RequestParam(value = "file", required = false) MultipartFile file) {
 
         if (file == null){
             return "";
