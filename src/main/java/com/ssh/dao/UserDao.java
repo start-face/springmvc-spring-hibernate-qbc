@@ -11,6 +11,15 @@ import java.util.List;
  */
 public interface UserDao {
 
+
+    /**
+     * 更新头像
+     * @param id 用户ID
+     * @param headImage 用户上传头像保存路径
+     * @return "
+     */
+    boolean updateImage(Long id,String headImage);
+
     /**
      * 修改用户密码
      * @param id 用户ID

@@ -31,15 +31,7 @@
 <div class="containBox">
     <div class="containBox-bg"></div>
     <jsp:include page="pretemplate/head.jsp"/>
-    <nav class="breadcrumb">
-        <div class="container">
-            <i class="Hui-iconfont">&#xe67f;</i>
-            <a href="${pageContext.request.contextPath}/" class="c-primary">首页</a>
-            <span class="c-gray en">&gt;</span>
-        </div>
-    </nav>
     <div class="wap-container">
-
         <nav class="breadcrumb">
             <div class="container">
                 <i class="Hui-iconfont">&#xe67f;</i>

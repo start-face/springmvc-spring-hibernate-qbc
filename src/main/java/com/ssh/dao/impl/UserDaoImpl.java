@@ -23,6 +23,19 @@ public class UserDaoImpl implements UserDao {
     private HibernateTemplate hibernateTemplate;
 
     /**
+     * 更新头像
+     * @param id 用户ID
+     * @param headImage 用户上传头像保存路径
+     * @return "
+     */
+    @Override
+    public boolean updateImage(Long id, String headImage) {
+
+        String sql = "update hb_user_model h set h.images=" + headImage + " where h.id=" + id;
+        return HibernateFactory.update(hibernateTemplate, sql);
+    }
+
+    /**
      * 修改用户密码
      *
      * @param passWord 密码

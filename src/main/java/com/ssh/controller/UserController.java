@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +31,30 @@ public class UserController {
     private UserService userService;
     @Autowired
     private NewsService newsService;
+
+    @RequestMapping("/uploadImage")
+    @ResponseBody
+    public String uploadImage(Long id,@RequestParam(value = "file", required = false) MultipartFile file) {
+
+        if (file == null || id == null){
+            return "0";
+        }
+
+        try {
+            String upload = UploadUtil.upload(file, "D:/temp/images/");
+            if (Str.isBlank(upload)){
+                return "0";
+            }
+
+            boolean result = userService.updateImage(id, upload);
+            if (result){
+                return "1";
+            }
+        } catch (Exception e) {
+            return "0";
+        }
+        return "0";
+    }
 
     @RequestMapping("/upload")
     @ResponseBody

@@ -24,6 +24,26 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
+    /**
+     * 更新头像
+     * @param id 用户ID
+     * @param headImage 用户上传头像保存路径
+     * @return "
+     */
+    @Override
+    public boolean updateImage(Long id, String headImage) {
+
+        if (id == null || Str.isBlank(headImage)){
+            return false;
+        }
+
+        try {
+            return userDao.updatePassWord(id,headImage);
+        }catch (Exception e){
+            logger.error("更新头像失败,失败的信息是:",e);
+            return false;
+        }
+    }
 
     /**
      * 修改用户密码

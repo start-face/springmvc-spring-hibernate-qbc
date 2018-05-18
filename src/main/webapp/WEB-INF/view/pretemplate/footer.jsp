@@ -6,10 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
-<html>
-<head>
-</head>
-<body>
 <footer class="footer mt-20">
     <div class="container">
         <nav class="footer-nav">
@@ -44,5 +40,3 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/swfobject.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/common/lib/respond.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/common/static/h-ui/src/js/jQuery.Huimodalalert.js"></script>
-</body>
-</html>
