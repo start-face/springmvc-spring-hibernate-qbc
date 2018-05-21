@@ -1,8 +1,7 @@
 package com.ssh.controller;
-
 import com.ssh.model.News;
-import com.ssh.model.UserModel;
 import com.ssh.service.NewsService;
+import com.ssh.model.UserModel;
 import com.ssh.service.UserService;
 import com.ssh.tools.Str;
 import com.ssh.tools.UploadUtil;
@@ -34,19 +33,19 @@ public class UserController {
 
     @RequestMapping("/uploadImage")
     @ResponseBody
-    public String uploadImage(Long id,@RequestParam(value = "file", required = false) MultipartFile file) {
+    public String uploadImage(HttpServletRequest request,Long id,@RequestParam(value = "images", required = false) MultipartFile[] images) {
 
-        if (file == null || id == null){
+        if (images == null || id == null){
             return "0";
         }
 
         try {
-            String upload = UploadUtil.upload(file, "D:/temp/images/");
+            String upload = UploadUtil.uploadMultiFile(request,images, "D:/temp/images/");
             if (Str.isBlank(upload)){
                 return "0";
             }
 
-            boolean result = userService.updateImage(id, upload);
+            boolean result = newsService.updateNewsImages(id, upload);
             if (result){
                 return "1";
             }

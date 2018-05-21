@@ -2,10 +2,7 @@ package com.ssh.dao.impl;
 
 import com.ssh.dao.NewsDao;
 import com.ssh.model.News;
-import com.ssh.tools.HibernateFactory;
-import com.ssh.tools.Page;
-import com.ssh.tools.PageInfo;
-import com.ssh.tools.PageUtil;
+import com.ssh.tools.*;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.slf4j.Logger;
@@ -14,6 +11,7 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.net.URLEncoder;
 import java.util.List;
 
 /**
@@ -26,6 +24,19 @@ public class NewsDaoImpl implements NewsDao {
     private static final Logger logger = LoggerFactory.getLogger(NewsDaoImpl.class);
     @Resource
     private HibernateTemplate hibernateTemplate;
+
+    /**
+     * 上传新闻图片
+     * @param id 新闻ID
+     * @param images 图片
+     * @return "
+     */
+    @Override
+    public boolean updateNewsImages(Long id, String images) {
+
+        String sql = "update news_model n set n.images='"+ images +"' where n.id=" + id;
+        return HibernateFactory.update(hibernateTemplate, sql);
+    }
 
     /**
      * 恢复删除的信息

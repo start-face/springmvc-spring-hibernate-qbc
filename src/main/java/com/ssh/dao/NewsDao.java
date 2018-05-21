@@ -13,6 +13,14 @@ import java.util.List;
 public interface NewsDao {
 
     /**
+     * 上传新闻图片
+     * @param id 新闻ID
+     * @param images 图片
+     * @return "
+     */
+    boolean updateNewsImages(Long id,String images);
+
+    /**
      * 恢复删除的信息
      * @param id 信息ID
      * @return ""

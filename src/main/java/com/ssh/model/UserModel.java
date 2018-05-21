@@ -95,11 +95,11 @@ public class UserModel implements Serializable {
         return this;
     }
 
-    public int getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public UserModel setSex(int sex) {
+    public UserModel setSex(Integer sex) {
         this.sex = sex;
         return this;
     }

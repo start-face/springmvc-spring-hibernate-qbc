@@ -1,5 +1,6 @@
 package com.ssh.tools;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 /**
  * 字符串操作工具类
@@ -9,6 +10,24 @@ import java.io.UnsupportedEncodingException;
  **/
 public class Str {
 
+
+    public static String encode(String str){
+
+        try {
+            return URLEncoder.encode(str,"utf-8");
+        }catch (Exception e){
+            return "";
+        }
+    }
+
+    public static String decode(String str){
+
+        try {
+            return URLEncoder.encode(str,"utf-8");
+        }catch (Exception e){
+            return "";
+        }
+    }
 
     /**
      * 把字节数组转换成字符串

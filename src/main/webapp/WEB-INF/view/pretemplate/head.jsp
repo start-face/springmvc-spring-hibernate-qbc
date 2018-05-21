@@ -100,7 +100,7 @@
                             <a href="javascript:;" class="dropDown_A">${user.userName}</a>
                             <ul class="dropDown-menu menu radius box-shadow">
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/user/userInfo?id=${user.id}" target="_blank">个人中心</a>
+                                    <a href="${pageContext.request.contextPath}/user/userInfo?id=${user.id}">个人中心</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/user/updatePassWordPage">修改密码</a>

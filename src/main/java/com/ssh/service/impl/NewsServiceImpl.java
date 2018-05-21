@@ -5,6 +5,7 @@ import com.ssh.model.News;
 import com.ssh.service.NewsService;
 import com.ssh.tools.Page;
 import com.ssh.tools.PageInfo;
+import com.ssh.tools.Str;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,27 @@ public class NewsServiceImpl implements NewsService {
     private static final Logger logger = LoggerFactory.getLogger(NewsServiceImpl.class);
     @Autowired
     private NewsDao newsDao;
+
+    /**
+     * 上传新闻图片
+     * @param id 新闻ID
+     * @param images 图片
+     * @return "
+     */
+    @Override
+    public boolean updateNewsImages(Long id, String images) {
+
+        if (id == null || Str.isBlank(images)){
+            return false;
+        }
+
+        try {
+            return newsDao.updateNewsImages(id,images);
+        }catch (Exception e){
+            logger.error("上传图片出错,错误信息是:",e);
+            return false;
+        }
+    }
 
     /**
      * 恢复删除的信息

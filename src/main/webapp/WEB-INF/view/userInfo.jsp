@@ -54,15 +54,9 @@
             </div>
         </div>
         <div id="statusBar" class="statusBar">
-            <div class="total-progress">
-                <div id="totalProgressBar"
-                     class="total-progress-bar"
-                     role="progressbar"
-                     aria-valuenow="0"
-                     aria-valuemin="0"
-                     aria-valuemax="100"
-                     style="min-width: 2em;">
-                    0%
+            <div class="progress radius">
+                <div class="progress-bar">
+                    <span class="sr-only" style="width:1%"></span>
                 </div>
             </div>
             <div class="start-uploader" style="padding-right:20px; float: right;">
@@ -71,18 +65,73 @@
             <div class="start-uploader" style="padding:0 20px; float: right;margin: 20 10px">
                 <a id="addBtn" href="javascript:void(0);" class="text">继续添加</a>
             </div>
-
         </div>
         <div class="" style="clear: both;">
         </div>
     </div>
 </div>
 <div class="container bs-docs-container">
-    <form id="form">
-        <input id="js-file" type="file" style="display:none;"  multiple="multiple"/>
+    <form id="form" method="post" enctype="multipart/form-data">
+        <input id="js-file" name="images" type="file" style="display:none;" multiple="multiple"/>
     </form>
 </div>
 
 <jsp:include page="pretemplate/footer.jsp"/>
+<script>
+
+    var uploadInterval;
+    // var flag = false;
+
+    $("#startUpload").click(function () {
+
+        var images = $("#js-file").val();
+        if (images === "") {
+            alert("没有数据");
+            return false;
+        }
+
+        $.ajax({
+            type: "post",
+            url: "${pageContext.request.contextPath}/user/uploadImage?id=${user.id}",
+            data: new FormData($("#form")[0]),
+            cache: false,
+            processData: false,
+            contentType: false,
+            async: false,
+            success: function (data) {
+
+                if (data === "0") {
+                    alert("多图片上传失败");
+                }
+                // else {
+                // alert("多图片上传成功");
+                <%--&lt;%&ndash;window.location.href = "${pageContext.request.contextPath}/user/index";&ndash;%&gt;--%>
+                // }
+            }
+        });
+        uploadInterval = window.setInterval("showUpload()", 500);
+    });
+
+    function showUpload() {
+
+        $.ajax({
+            type: "POST",  //提交方式
+            url: "${pageContext.request.contextPath}/loading",//路径
+            dataType: "json",//返回的json格式的数据
+            data: {},
+            success: function (result) {//返回数据根据结果进行相应的处理
+
+                $(".sr-only").width(result + '%');
+                if (result == 100) {
+                    window.clearInterval(uploadInterval);
+                    $("#show").attr("display", "block");
+                }
+            },
+            error: function (errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+    }
+</script>
 </body>
 </html>

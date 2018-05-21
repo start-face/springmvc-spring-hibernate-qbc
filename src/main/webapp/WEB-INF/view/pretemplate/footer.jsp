@@ -42,7 +42,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/common/static/h-ui/src/js/jQuery.Huimodalalert.js"></script>
 <!--引入多图片上传插件Web Uploader的js-->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/webuploader.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
+<%--<script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>--%>
 <!--  <script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script> -->
 <script src="${pageContext.request.contextPath}/js/aliyun-oss-sdk.js"></script>
 <script src="${pageContext.request.contextPath}/js/index.js"></script>

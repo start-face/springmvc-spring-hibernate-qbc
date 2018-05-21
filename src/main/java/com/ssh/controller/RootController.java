@@ -1,13 +1,17 @@
 package com.ssh.controller;
 
 import com.ssh.model.News;
-import com.ssh.model.UserModel;
 import com.ssh.service.NewsService;
+import com.ssh.model.UserModel;
 import com.ssh.service.UserService;
+import com.ssh.tools.Str;
+import com.ssh.tools.UploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -27,11 +31,30 @@ public class RootController {
     @Autowired
     private NewsService newsService;
 
+    @RequestMapping("loadingPage")
+    public String loadingPage(){
+        return "loading";
+    }
+
+    @RequestMapping("loading")
+    @ResponseBody
+    public String loading(HttpServletRequest request) {
+
+        Object loading = request.getSession().getAttribute("loading");
+        String string = "";
+        if (loading == null || loading == "0"){
+            string = "1";
+        }else {
+            string = request.getSession().getAttribute("loading").toString();
+        }
+        return string;
+    }
+
     @RequestMapping("index")
-    public String index(HttpServletRequest request,News news) {
+    public String index(HttpServletRequest request, News news) {
 
         List<UserModel> userModels = userService.showUser(new UserModel());
-        if (userModels == null || userModels.size() < 1){
+        if (userModels == null || userModels.size() < 1) {
             addUser();
         }
 
