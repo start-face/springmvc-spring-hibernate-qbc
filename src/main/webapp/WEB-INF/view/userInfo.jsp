@@ -80,7 +80,6 @@
 <script>
 
     var uploadInterval;
-    // var flag = false;
 
     $("#startUpload").click(function () {
 
